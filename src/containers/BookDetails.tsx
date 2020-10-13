@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { MdClose } from "react-icons/md";
-import "../Styles/BookDetails.css";
+import { MdClose } from "../atoms/node_modules/react-icons/md";
+import "../styles/BookDetails.css";
 
 /**
  * BookDetail is a component that will show the details of a chosen book.

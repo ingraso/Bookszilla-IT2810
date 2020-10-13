@@ -1,6 +1,6 @@
 import React from "react";
-import Checkbox from "../Atoms/Checkbox";
-import "../Styles/FilterMenu.css";
+import Checkbox from "../atoms/Checkbox";
+import "../styles/FilterMenu.css";
 
 /**
  * FilterMenu is is a component that shows the different Checkboxes you can

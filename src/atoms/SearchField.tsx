@@ -1,5 +1,5 @@
 import React from "react";
-import { MdSearch } from "react-icons/md";
+import { MdSearch } from "../containers/node_modules/react-icons/md";
 
 /**
  * SearchField is a component for the search field itself and the
