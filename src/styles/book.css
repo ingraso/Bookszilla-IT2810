@@ -36,3 +36,11 @@
 .author {
   margin: 0;
 }
+
+/* ADD MEDIA QUERIES BELOW */
+@media only screen and (max-width: 850px) {
+  .book img {
+    width: 100px;
+    height: 150px;
+  }
+}
