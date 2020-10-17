@@ -1,0 +1,53 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  background-color: #fff;
+  padding: 0 20px;
+  height: 70px;
+  border-bottom: 1px solid #ccc;
+}
+
+#title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.header-right {
+  display: block;
+  float: right;
+}
+
+.header-right button {
+  padding: 12px;
+  font-size: 18px;
+  line-height: 18px;
+  background-color: white;
+  border: none;
+  outline: none;
+}
+
+.header-right button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signed-in#sign-in {
+  display: none;
+}
+
+#sign-out {
+  float: left;
+  border-radius: 4px 0 0 4px;
+}
+
+.not-signed-in#sign-out {
+  display: none;
+}
+
+.not-signed-in#profile {
+  display: none;
+}

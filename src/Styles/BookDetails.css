@@ -1,0 +1,37 @@
+/*Style the area where additional information about a book is given, 
+when a book i selected*/
+.opened-book#book-details {
+  display: flex; /*Use the flexbox to add items inside ---------------------------------------------------------*/
+  flex-direction: column;
+  overflow-y: auto;
+  position: fixed;
+  top: 130px;
+  right: 10px;
+  height: 60vh;
+  width: 20vw;
+  padding: 5px;
+  border-left: 1px solid #ccc;
+}
+
+/*When no book i selected*/
+.closed-book#book-details {
+  display: none;
+}
+
+/*Styling for the close-button*/
+#close-button {
+  position: absolute;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  color: white;
+  background-color: rgba(255, 73, 73, 0.8);
+  border: none;
+  outline: none;
+}
+
+#close-button:hover {
+  background-color: #ff4949;
+  cursor: pointer;
+}
