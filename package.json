@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -17,7 +16,6 @@
     "react-icons": "^3.11.0",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.3",
-    "react-simple-tree-menu": "^1.1.18",
     "redux": "^4.0.5",
     "typescript": "~3.7.2"
   },
