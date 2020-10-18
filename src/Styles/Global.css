@@ -1,0 +1,19 @@
+/*A file for styles that will be used several places in the application*/
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.red-button {
+  text-align: center;
+  background-color: #ff4949;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+.red-button:hover {
+  background-color: #fa8072;
+  cursor: pointer;
+}
