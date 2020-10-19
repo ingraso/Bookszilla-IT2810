@@ -1,0 +1,15 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "GraphQL server for searching through books",
+  "main": "server.ts",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "graphql": "^15.3.0",
+    "mongodb": "^3.6.2"
+  },
+  "scripts": {
+    "start": "node server.ts"
+  }
+}
