@@ -8,10 +8,6 @@ interface BookProps {
   cover: string;
 }
 
-const displayDetailedBook = () => {
-  console.log("hl")
-}
-
 /**
  * Book is a representation of a book, with its title,
  * author and cover image.
@@ -19,7 +15,7 @@ const displayDetailedBook = () => {
  */
 export const Book = (props: BookProps) => {
   return (
-    <div className="book" onClick={() => displayDetailedBook}>
+    <div className="book">
       <img src={props.cover} alt="SOME book cover" />
       <p className="title">{props.title}</p>
       <p className="author">by {props.author}</p>
