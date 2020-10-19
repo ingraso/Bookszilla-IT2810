@@ -1,5 +1,5 @@
 import React from "react";
-import { MdArrowUpward } from "../containers/node_modules/react-icons/md";
+import { MdArrowUpward } from "react-icons/md";
 import "../styles/ToTop.css";
 
 /**

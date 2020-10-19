@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdClose } from "../atoms/node_modules/react-icons/md";
+import { MdClose } from "react-icons/md";
 import "../styles/BookDetails.css";
 
 /**

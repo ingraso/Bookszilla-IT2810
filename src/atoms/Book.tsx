@@ -1,11 +1,15 @@
 import React from "react";
-import "../styles/book.css";
+import "../styles/Book.css";
 
 interface BookProps {
   id: string;
   title: string;
   author: string;
   cover: string;
+}
+
+const displayDetailedBook = () => {
+  console.log("hl")
 }
 
 /**
@@ -15,7 +19,7 @@ interface BookProps {
  */
 export const Book = (props: BookProps) => {
   return (
-    <div className="book">
+    <div className="book" onClick={() => displayDetailedBook}>
       <img src={props.cover} alt="SOME book cover" />
       <p className="title">{props.title}</p>
       <p className="author">by {props.author}</p>

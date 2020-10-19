@@ -1,9 +1,9 @@
 #book-container {
-  width: 60%;
-  margin: auto;
+  margin-right: 20vw;
   display: flex;
   flex-wrap: wrap;
   background-color: #ffffff;
+  justify-content: space-evenly;
 }
 
 .book {
@@ -37,7 +37,6 @@
   margin: 0;
 }
 
-/* ADD MEDIA QUERIES BELOW */
 @media only screen and (max-width: 850px) {
   .book img {
     width: 100px;
