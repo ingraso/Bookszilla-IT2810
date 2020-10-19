@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "./Atoms/Header";
-import SearchFieldAndSort from "./Containers/SearchFieldAndSort";
-import FilterAndBooks from "./Containers/FilterAndBooks";
-import ToTop from "./Atoms/ToTop";
-import BookDetails from "./Containers/BookDetails";
-import "./Styles/Global.css";
+import Header from "./atoms/Header";
+import SearchFieldAndSort from "./containers/SearchFieldAndSort";
+import FilterAndBooks from "./containers/FilterAndBooks";
+import ToTop from "./atoms/ToTop";
+import BookDetails from "./containers/BookDetails";
+import "./styles/Global.css";
 
 function App() {
   return (

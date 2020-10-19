@@ -1,5 +1,5 @@
-/*Style the area where additional information about a book is given, 
-when a book i selected*/
+/* Style the area where additional information about a book is given, 
+when a book i selected */
 .opened-book#book-details {
   display: flex; /*Use the flexbox to add items inside ---------------------------------------------------------*/
   flex-direction: column;
@@ -13,7 +13,7 @@ when a book i selected*/
   border-left: 1px solid #ccc;
 }
 
-/*When no book i selected*/
+/* When no book is selected */
 .closed-book#book-details {
   display: none;
 }
