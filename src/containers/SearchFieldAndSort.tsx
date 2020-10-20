@@ -1,7 +1,7 @@
 import React from "react";
-import SearchField from "../Atoms/SearchField";
+import SearchField from "../atoms/SearchField";
 import { MdSwapVert } from "react-icons/md";
-import "../Styles/SearchField.css";
+import "../styles/SearchField.css";
 
 const SearchFieldAndSort = () => {
   return (

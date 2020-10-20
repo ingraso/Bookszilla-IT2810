@@ -1,6 +1,6 @@
 import React from "react";
 import { MdArrowUpward } from "react-icons/md";
-import "../Styles/ToTop.css";
+import "../styles/ToTop.css";
 
 /**
  * ToTop is a component with a button to scroll to the top of the page again.
