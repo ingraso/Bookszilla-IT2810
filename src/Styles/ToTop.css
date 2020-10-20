@@ -1,3 +1,4 @@
+/*Styling for the to-top button*/
 #to-top {
   position: fixed;
   right: 10px;
@@ -7,4 +8,16 @@
   padding: 5px;
   border-radius: 0;
   border: none;
+}
+
+@media screen and (max-width: 850px) {
+  .filter#to-top,
+  .profile#to-top,
+  .book#to-top {
+    display: none;
+  }
+
+  #to-top {
+    bottom: 60px;
+  }
 }

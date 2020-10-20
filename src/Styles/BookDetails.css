@@ -13,7 +13,7 @@ when a book i selected*/
   border-left: 1px solid #ccc;
 }
 
-/*When no book i selected*/
+/*When no book is selected*/
 .closed-book#book-details {
   display: none;
 }
@@ -34,4 +34,23 @@ when a book i selected*/
 #close-button:hover {
   background-color: #ff4949;
   cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+  .filter#book-details,
+  .profile#book-details,
+  .home#book-details {
+    display: none;
+  }
+
+  #close-button {
+    display: none;
+  }
+
+  .opened-book#book-details {
+    position: static;
+    width: calc(100vw - 20px);
+    padding: 10px;
+    border: none;
+  }
 }

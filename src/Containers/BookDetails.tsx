@@ -12,8 +12,10 @@ const BookDetails = () => {
     "opened-book"
   );
 
+  // className="home" må gjøres om til en state i redux
+
   return (
-    <div className={bookDetailsClassName} id="book-details">
+    <div className={bookDetailsClassName + " book"} id="book-details">
       <button
         id="close-button"
         onClick={() => setBookDetailsClassName("closed-book")}

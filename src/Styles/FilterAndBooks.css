@@ -1,3 +1,11 @@
 #flex-container {
   display: flex;
 }
+
+@media screen and (max-width: 850px) {
+  .filter#book-container,
+  .profile#book-container,
+  .book#book-container {
+    display: none;
+  }
+}

@@ -8,8 +8,10 @@ import "../Styles/FilterMenu.css";
  */
 
 const FilterMenu = () => {
+  // className="home" må gjøres om til en state i redux
+
   return (
-    <div id="filter-menu">
+    <div id="filter-menu" className="book">
       <label>LANGUAGE</label>
       <Checkbox text="English" />
       <Checkbox text="Spanish" />

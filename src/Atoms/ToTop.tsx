@@ -13,8 +13,10 @@ const ToTop = () => {
     document.documentElement.scrollTop = 0;
   }
 
+  // className="home" må gjøres om til en state i redux
+
   return (
-    <button className="red-button" id="to-top" onClick={topFunction}>
+    <button className="red-button book" id="to-top" onClick={topFunction}>
       <MdArrowUpward size="30px" />
     </button>
   );

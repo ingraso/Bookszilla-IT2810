@@ -3,9 +3,14 @@ import SearchField from "../Atoms/SearchField";
 import { MdSwapVert } from "react-icons/md";
 import "../Styles/SearchField.css";
 
+/**
+ * SearchFiledAndSort is a component that contains the searchfield and the
+ * button and dropdown for sorting elements.
+ */
+
 const SearchFieldAndSort = () => {
   return (
-    <div id="search-field-and-sort-container">
+    <div id="search-field-and-sort-container" className="book">
       <SearchField />
       <div className="dropdown">
         <button className="dropdown-button red-button">

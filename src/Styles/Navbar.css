@@ -1,0 +1,34 @@
+#navbar {
+  display: none;
+}
+
+@media screen and (max-width: 850px) {
+  /*Styling for the navbar*/
+  #navbar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    justify-content: space-evenly;
+    padding: 10px 0;
+    background-color: white;
+    border-top: 1px solid #ccc;
+  }
+
+  /*Styling for the navbar-buttons*/
+  #navbar-home.home,
+  #navbar-profile.profile,
+  #navbar-filter.filter,
+  #navbar-book.book,
+  #navbar-sign-out:hover {
+    color: #ff4949 !important;
+  }
+
+  #navbar button {
+    background-color: white;
+    padding: none;
+    outline: none;
+    border: none;
+  }
+}

@@ -7,10 +7,14 @@ import "../Styles/FilterAndBooks.css";
  */
 
 const FilterAndBooks = () => {
+  // className="home" må gjøres om til en state i redux
+
   return (
     <div id="flex-container">
       <FilterMenu />
-      <div id="book-container">Hei</div>
+      <div id="book-container" className="book">
+        Hei
+      </div>
     </div>
   );
 };

@@ -7,6 +7,10 @@ import { MdSearch } from "react-icons/md";
  */
 
 const SearchField = () => {
+  /**
+   * className skal byttes ut med state fra redux når jeg finner ut av det
+   */
+
   return (
     <div id="search">
       <input
