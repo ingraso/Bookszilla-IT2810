@@ -9,6 +9,18 @@ header {
   border-bottom: 1px solid #ccc;
 }
 
+#title-button {
+  background-color: white;
+  padding: none;
+  margin: none;
+  border: none;
+  outline: none;
+}
+
+#title-button:hover {
+  cursor: pointer;
+}
+
 #title {
   font-size: 18px;
   font-weight: bold;

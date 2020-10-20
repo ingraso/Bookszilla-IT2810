@@ -1,0 +1,19 @@
+#profile-page {
+    position: relative;
+    width: 100vw;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    z-index: 5;
+}
+
+#profile-page button {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#favorites.favorites, 
+#wish-to-read.wish-to-read, 
+#have-read.have-read {
+    background-color: #fa8072;
+}
