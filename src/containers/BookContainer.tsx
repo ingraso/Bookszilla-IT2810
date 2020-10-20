@@ -9,7 +9,7 @@ export const BookContainer = () => {
         return (
           <Book
             key={bookData.id}
-            id={bookData.id}
+            id={Number(bookData.id)}
             title={bookData.title}
             author={bookData.author}
             cover={bookData.cover}
