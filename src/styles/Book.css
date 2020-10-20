@@ -1,5 +1,5 @@
 #book-container {
-  margin-right: 20vw;
+  margin-right: 21vw;
   display: flex;
   flex-wrap: wrap;
   background-color: #ffffff;
@@ -25,15 +25,15 @@
   cursor: pointer;
 }
 
-.title {
+.book .title {
   font-style: italic;
 }
 
-.title:hover {
+.book .title:hover {
   cursor: pointer;
 }
 
-.author {
+.book .author {
   margin: 0;
 }
 

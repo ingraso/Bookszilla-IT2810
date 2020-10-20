@@ -18,7 +18,7 @@ when a book i selected */
   display: none;
 }
 
-/*Styling for the close-button*/
+/* Styling for the close-button */
 #close-button {
   position: absolute;
   right: 0;
@@ -34,4 +34,21 @@ when a book i selected */
 #close-button:hover {
   background-color: #ff4949;
   cursor: pointer;
+}
+
+#book-details img {
+  width: 100%;
+  /* Only for testing, remove when we get the real data */
+  transform: rotate(90deg);
+}
+
+#book-details .title {
+  /* Needs to be altered when we get the real data */
+  margin-top: 100px;
+}
+
+#book-details button:not(:first-child) {
+  padding: 5px;
+  margin: 5px auto;
+  width: 80%;
 }
