@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { useSelector } from "react-redux";
-import "../Styles/BookDetails.css";
+import "../styles/BookDetails.css";
 
 /**
  * BookDetail is a component that will show the details of a chosen book.

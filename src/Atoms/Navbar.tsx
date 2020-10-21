@@ -4,7 +4,7 @@ import { FiFilter } from "react-icons/fi";
 import { MdHome } from "react-icons/md";
 import { BsBook } from "react-icons/bs";
 import { BsBoxArrowRight } from "react-icons/bs";
-import "../Styles/Navbar.css";
+import "../styles/Navbar.css";
 import { changePhonePage } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 

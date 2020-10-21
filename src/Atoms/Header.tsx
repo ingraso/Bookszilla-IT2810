@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/Header.css";
+import "../styles/Header.css";
 
 /**
  * Header is a component containing every item in the header. What buttons

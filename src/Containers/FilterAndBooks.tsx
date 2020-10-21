@@ -1,6 +1,6 @@
 import React from "react";
 import FilterMenu from "./FilterMenu";
-import "../Styles/FilterAndBooks.css";
+import "../styles/FilterAndBooks.css";
 import { useSelector } from "react-redux";
 
 /**
