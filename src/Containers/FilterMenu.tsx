@@ -1,17 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Checkbox from "../Atoms/Checkbox";
 import "../Styles/FilterMenu.css";
 
 /**
  * FilterMenu is is a component that shows the different Checkboxes you can
  * choose between.
+ * @var phonePage is used to decide if the filter-component should be shown.
  */
 
 const FilterMenu = () => {
-  // className="home" må gjøres om til en state i redux
+  const phonePage: any = useSelector((state: any) => state.phonePage);
 
   return (
-    <div id="filter-menu" className="book">
+    <div id="filter-menu" className={phonePage}>
       <label>LANGUAGE</label>
       <Checkbox text="English" />
       <Checkbox text="Spanish" />

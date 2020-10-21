@@ -2,15 +2,20 @@ import React from "react";
 import SearchField from "../Atoms/SearchField";
 import { MdSwapVert } from "react-icons/md";
 import "../Styles/SearchField.css";
+import { useSelector } from "react-redux";
 
 /**
  * SearchFiledAndSort is a component that contains the searchfield and the
  * button and dropdown for sorting elements.
+ * @var phonePage is used to decide if the search-field and sort-button
+ * should be shown.
  */
 
 const SearchFieldAndSort = () => {
+  const phonePage: any = useSelector((state: any) => state.phonePage);
+
   return (
-    <div id="search-field-and-sort-container" className="book">
+    <div id="search-field-and-sort-container" className={phonePage}>
       <SearchField />
       <div className="dropdown">
         <button className="dropdown-button red-button">

@@ -36,10 +36,11 @@ when a book i selected*/
   cursor: pointer;
 }
 
+/* When the screen-width is small, book-details should not allways be shown */
 @media screen and (max-width: 850px) {
-  .filter#book-details,
-  .profile#book-details,
-  .home#book-details {
+  #book-details.filter,
+  #book-details.profile,
+  #book-details.home {
     display: none;
   }
 

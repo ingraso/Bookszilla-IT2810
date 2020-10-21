@@ -5,32 +5,52 @@ import { MdHome } from "react-icons/md";
 import { BsBook } from "react-icons/bs";
 import { BsBoxArrowRight } from "react-icons/bs";
 import "../Styles/Navbar.css";
+import { changePhonePage } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 /**
  * Navbar is a component for the navigation bar that will be shown on
  * screens with width <= 850px.
+ * @var phonePage uses redux store to decide which button should me marked.
+ * @var dispatch is used to move between different pages on click.
  */
 
 const Navbar = () => {
-  // Need logic for changing the classNames based on redux
-  // Must alså check for whether or not a person is signed in. There is
-  // no logic or css for this yet
+  const dispatch = useDispatch();
+
+  const phonePage: any = useSelector((state: any) => state.phonePage);
 
   return (
     <div id="navbar">
-      <button id="navbar-profile" className="book">
+      <button
+        id="navbar-profile"
+        className={phonePage}
+        onClick={() => dispatch(changePhonePage("profile"))}
+      >
         <MdAccountCircle size="30px" />
       </button>
-      <button id="navbar-filter" className="book">
+      <button
+        id="navbar-filter"
+        className={phonePage}
+        onClick={() => dispatch(changePhonePage("filter"))}
+      >
         <FiFilter size="30px" />
       </button>
-      <button id="navbar-home" className="book">
+      <button
+        id="navbar-home"
+        className={phonePage}
+        onClick={() => dispatch(changePhonePage("home"))}
+      >
         <MdHome size="30px" />
       </button>
-      <button id="navbar-book" className="book">
+      <button
+        id="navbar-book"
+        className={phonePage}
+        onClick={() => dispatch(changePhonePage("book"))}
+      >
         <BsBook size="30px" />
       </button>
-      <button id="navbar-sign-out" className="book">
+      <button id="navbar-sign-out" className={phonePage}>
         <BsBoxArrowRight size="30px" />
       </button>
     </div>

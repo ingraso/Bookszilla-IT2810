@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
+import { useSelector } from "react-redux";
 import "../Styles/BookDetails.css";
 
 /**
  * BookDetail is a component that will show the details of a chosen book.
  * @var bookDetailsClassName is used to choose if details of a book is shown.
+ * @var phonePage uses redux store to decide if the component should be shown.
  */
 
 const BookDetails = () => {
@@ -12,10 +14,10 @@ const BookDetails = () => {
     "opened-book"
   );
 
-  // className="home" må gjøres om til en state i redux
+  const phonePage: any = useSelector((state: any) => state.phonePage);
 
   return (
-    <div className={bookDetailsClassName + " book"} id="book-details">
+    <div className={bookDetailsClassName + " " + phonePage} id="book-details">
       <button
         id="close-button"
         onClick={() => setBookDetailsClassName("closed-book")}
