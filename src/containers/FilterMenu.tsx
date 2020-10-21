@@ -11,7 +11,7 @@ const FilterMenu = () => {
   return (
     <div id="filter-menu">
       <label>LANGUAGE</label>
-      <Checkbox text="English" />
+      <Checkbox id="language-eng" text="English" />
       <Checkbox text="Spanish" />
 
       <label>GENRE</label>

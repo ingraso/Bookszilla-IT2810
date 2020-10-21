@@ -21,7 +21,11 @@ const updateDetailedBook = (id: number) => {
  */
 export const Book = (props: BookProps) => {
   return (
-    <div className="book" onClick={() => updateDetailedBook(props.id)}>
+    <div
+      id={String(props.id)}
+      className="book"
+      onClick={() => updateDetailedBook(props.id)}
+    >
       <img src={props.cover} alt="`SOME book cover" />
       <p className="title">{props.title}</p>
       <p className="author">by {props.author}</p>
