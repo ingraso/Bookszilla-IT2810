@@ -1,3 +1,7 @@
+/**
+ * The file to be run on the provided vm, to facilitate reading and writing to the database
+ */
+
 const Express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const mongoose = require("mongoose");
@@ -13,10 +17,10 @@ const {
   Source,
 } = require("graphql");
 const { Context } = require("vm");
-
 const app = Express();
 const cors = require("cors");
 
+//Connects to the database, authenticating with a user that has read and write privileges
 mongoose
   .connect("mongodb://rwUser:bookPenc1l@it2810-20.idi.ntnu.no:27017/searchDB", {
     auth: {
@@ -29,6 +33,7 @@ mongoose
   .then(() => console.log("Connected to database..."))
   .catch((err: any) => console.error(err));
 
+//Defines a Book interface
 interface Book extends Document {
   title: string;
   author: string;
@@ -36,6 +41,7 @@ interface Book extends Document {
   image: string;
 }
 
+//Defines a mongoose schema for books
 const BookSchema: typeof Schema = new Schema({
   title: String,
   author: String,
@@ -43,9 +49,12 @@ const BookSchema: typeof Schema = new Schema({
   image: String,
 });
 
+//Uses the BookSchema to make a mongoose model. ts-ignore is used here as
+//typescript would complain about BoomSchema having type-arguments
 // @ts-ignore
 const BookModel: typeof model = mongoose.model<Book>("book", BookSchema);
 
+//Defines a graphql type for a book
 const BookType = new GraphQLObjectType({
   name: "book",
   fields: {
@@ -57,6 +66,7 @@ const BookType = new GraphQLObjectType({
   },
 });
 
+//Defines a graphql schema for a book, that includes various queries and mutations
 const bookSchema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: "Queries",
@@ -127,14 +137,16 @@ const bookSchema = new GraphQLSchema({
   }),
 });
 
+//Starts up the express app with the aforementioned graphql schema
 app.use(
   "/book",
   graphqlHTTP({
     schema: bookSchema,
-    graphiql: true,
+    graphiql: true, //This makes manual testing of the different queries and mutations easier
   })
 );
 
+//Listens for API calls
 app.listen(3001, () => {
   console.log("Server running at 3001");
 });
