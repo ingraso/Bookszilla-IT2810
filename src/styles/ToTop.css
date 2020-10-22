@@ -1,3 +1,4 @@
+/*Styling for the to-top button*/
 #to-top {
   position: fixed;
   right: 10px;
@@ -7,4 +8,10 @@
   padding: 5px;
   border-radius: 0;
   border: none;
+}
+
+@media screen and (max-width: 850px) {
+  #to-top {
+    display: none;
+  }
 }

@@ -7,6 +7,7 @@ import { MdSearch } from "react-icons/md";
  */
 
 const SearchField = () => {
+
   return (
     <div id="search">
       <input

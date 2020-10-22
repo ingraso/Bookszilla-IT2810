@@ -1,13 +1,13 @@
 /* Style the area where additional information about a book is given, 
 when a book i selected */
 .opened-book#book-details {
-  display: flex; /*Use the flexbox to add items inside ---------------------------------------------------------*/
+  display: flex;
   flex-direction: column;
   overflow-y: auto;
   position: fixed;
   top: 130px;
   right: 10px;
-  height: 60vh;
+  height: 65vh;
   width: 20vw;
   padding: 5px;
   border-left: 1px solid #ccc;
@@ -51,4 +51,25 @@ when a book i selected */
   padding: 5px;
   margin: 5px auto;
   width: 80%;
+}
+
+/* When the screen-width is small, book-details should not allways be shown */
+@media screen and (max-width: 850px) {
+  #book-details.filter,
+  #book-details.profile,
+  #book-details.home {
+    display: none;
+  }
+
+  #close-button {
+    display: none;
+  }
+
+  .opened-book#book-details {
+    position: static;
+    width: calc(100vw - 20px);
+    padding: 10px;
+    border: none;
+    height: calc(100vh - 100px);
+  }
 }
