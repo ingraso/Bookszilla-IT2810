@@ -33,7 +33,7 @@ const BookDetails = () => {
   return (
     <div className={bookDetailsClassName} id="book-details">
       <button
-        id="close-button"
+        className="close-button"
         onClick={() => setBookDetailsClassName("closed-book")}
       >
         <MdClose size="20px" />
