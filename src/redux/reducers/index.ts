@@ -1,15 +1,10 @@
-import { UPDATE_DETAILED_BOOK_ID } from "../actions";
+import { combineReducers } from "redux";
+import phonePageReducer from "./phonePage";
+import detailedBookIdReducer from "./detailedBookReducer";
 
-const initialState = {
-  id: 0,
-};
+const rootReducer = combineReducers<any>({
+  phonePage: phonePageReducer,
+  detailedBookIdReducer,
+});
 
-const detailedBookIdReducer = (state = initialState, action: any) => {
-  if (action.type === UPDATE_DETAILED_BOOK_ID) {
-    return Object.assign({}, state, {
-      id: action.id,
-    });
-  }
-  return state;
-};
-export default detailedBookIdReducer;
+export default rootReducer;

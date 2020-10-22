@@ -10,9 +10,9 @@ interface BookProps {
   cover: string;
 }
 
-const updateDetailedBook = (id: number) => {
+/*const updateDetailedBook = (id: number) => {
   store.dispatch(changeDetailedBook(id));
-};
+};*/
 
 /**
  * Book is a representation of a book, with its title,
@@ -23,7 +23,7 @@ export const Book = (props: BookProps) => {
   return (
     <div
       id={String(props.id)}
-      className="book"
+      className="single-book"
       onClick={() => updateDetailedBook(props.id)}
     >
       <img src={props.cover} alt="`SOME book cover" />
