@@ -1,3 +1,4 @@
+/* Styling for the header */
 header {
   display: flex;
   justify-content: space-between;
@@ -9,6 +10,19 @@ header {
   border-bottom: 1px solid #ccc;
 }
 
+/* Styling for the title */
+#title-button {
+  background-color: white;
+  padding: none;
+  margin: none;
+  border: none;
+  outline: none;
+}
+
+#title-button:hover {
+  cursor: pointer;
+}
+
 #title {
   font-size: 18px;
   font-weight: bold;
@@ -16,6 +30,7 @@ header {
   padding: 0;
 }
 
+/* Styling for the other buttons in the header */
 .header-right {
   display: block;
   float: right;
@@ -35,23 +50,18 @@ header {
   cursor: pointer;
 }
 
-.signed-in#sign-in {
-  display: none;
-}
-
 #sign-out {
   float: left;
   border-radius: 4px 0 0 4px;
 }
 
-.not-signed-in#sign-out {
+.not-signed-in#sign-out,
+.not-signed-in#profile,
+.signed-in#sign-in {
   display: none;
 }
 
-.not-signed-in#profile {
-  display: none;
-}
-
+/* Styling for the header when the screen width is small */
 @media screen and (max-width: 850px) {
   .header-right {
     display: none;

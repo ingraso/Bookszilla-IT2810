@@ -12,7 +12,7 @@ import "../styles/BookDetails.css";
 
 const BookDetails = () => {
   const [bookDetailsClassName, setBookDetailsClassName] = useState<string>(
-    "closed-book"
+    "opened-book"
   );
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   // remember to remove this after retrieving data from db

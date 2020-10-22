@@ -21,11 +21,7 @@ interface BookProps {
  */
 export const Book = (props: BookProps) => {
   return (
-    <div
-      id={String(props.id)}
-      className="single-book"
-      onClick={() => updateDetailedBook(props.id)}
-    >
+    <div id={String(props.id)} className="single-book">
       <img src={props.cover} alt="`SOME book cover" />
       <p className="title">{props.title}</p>
       <p className="author">by {props.author}</p>

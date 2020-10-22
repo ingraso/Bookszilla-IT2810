@@ -67,9 +67,14 @@ when a book i selected */
 
   .opened-book#book-details {
     position: static;
-    width: calc(100vw - 20px);
-    padding: 10px;
+    width: auto;
+    margin: 10px;
     border: none;
-    height: calc(100vh - 100px);
+    height: auto;
+  }
+
+  .opened-book p {
+    margin: auto;
+    margin-bottom: 10px;
   }
 }

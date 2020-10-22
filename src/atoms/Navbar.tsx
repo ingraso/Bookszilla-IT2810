@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Navbar = () => {
   const dispatch = useDispatch();
 
-  const phonePage: any = useSelector((state: any) => state.phonePage);
+  const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
 
   function topFunction() {
     document.body.scrollTop = 0;
@@ -34,33 +34,29 @@ const Navbar = () => {
     <div id="navbar">
       <button
         id="navbar-profile"
-        className={phonePage.phonePage}
+        className={phonePage}
         onClick={() => dispatch(changePhonePage("profile"))}
       >
         <MdAccountCircle size="30px" />
       </button>
       <button
         id="navbar-filter"
-        className={phonePage.phonePage}
+        className={phonePage}
         onClick={() => dispatch(changePhonePage("filter"))}
       >
         <FiFilter size="30px" />
       </button>
-      <button
-        id="navbar-home"
-        className={phonePage.phonePage}
-        onClick={clickHome}
-      >
+      <button id="navbar-home" className={phonePage} onClick={clickHome}>
         <MdHome size="30px" />
       </button>
       <button
         id="navbar-book"
-        className={phonePage.phonePage}
+        className={phonePage}
         onClick={() => dispatch(changePhonePage("book"))}
       >
         <BsBook size="30px" />
       </button>
-      <button id="navbar-sign-out" className={phonePage.phonePage}>
+      <button id="navbar-sign-out" className={phonePage}>
         <BsBoxArrowRight size="30px" />
       </button>
     </div>

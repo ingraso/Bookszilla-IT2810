@@ -1,0 +1,16 @@
+@media screen and (min-width: 851px) {
+  #profile-page-container.profile-page {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  #profile-page-container.main-page,
+  #main-page-container.profile-page {
+    display: none;
+  }
+
+  #main-page-container.main-page {
+    display: block;
+  }
+}
