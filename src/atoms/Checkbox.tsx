@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 interface CheckboxProps {
-  text: String;
+  text: string;
+  id?: string;
 }
 
 /**
@@ -11,7 +12,7 @@ interface CheckboxProps {
  * @var checked is a hook to decide if a checkbox is checked
  */
 
-const Checkbox = ({ text }: CheckboxProps) => {
+const Checkbox = (props: CheckboxProps) => {
   const [checked, changeChecked] = useState(false);
 
   const toggleCheck = () => {
@@ -19,8 +20,8 @@ const Checkbox = ({ text }: CheckboxProps) => {
   };
 
   return (
-    <span className="container" onClick={toggleCheck}>
-      {text}
+    <span id={props.id} className="container" onClick={toggleCheck}>
+      {props.text}
       <input type="checkbox" checked={checked} />
       <span className="checkmark"></span>
     </span>

@@ -1,12 +1,11 @@
 /*Styling for the container*/
-
 #search-field-and-sort-container {
   display: flex;
   margin: 10px auto;
   justify-content: center;
 }
 
-/*Styling for the search-field and search-buttons container*/
+/*Styling for the search-field and search-buttons*/
 #search {
   width: 45%;
 }
@@ -27,12 +26,11 @@
   outline: none;
 }
 
-/*Styling for search-button*/
 #search-button {
   box-sizing: border-box;
   width: 15%;
   height: 40px;
-  padding: 5px;
+  padding: 0;
   border: 2px solid #ccc;
   border-radius: 0 4px 4px 0;
 }
@@ -42,6 +40,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar*/
 
 /*Styling for dropdown-menu for sorting*/
 .dropdown {
+  position: relative;
   display: inline;
   margin-left: 15px;
 }
@@ -73,4 +72,21 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar*/
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+/*Styling for when screen-width <= 850px*/
+@media screen and (max-width: 850px) {
+  #search {
+    width: 80vw;
+  }
+
+  .dropdown-content {
+    right: 0;
+  }
+
+  .profile#search-field-and-sort-container,
+  .filter#search-field-and-sort-container,
+  .book#search-field-and-sort-container {
+    display: none;
+  }
 }
