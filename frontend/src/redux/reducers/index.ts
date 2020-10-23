@@ -5,8 +5,8 @@ import phonePageReducer from "./phonePage";
 
 const rootReducer = combineReducers<any>({
   phonePage: phonePageReducer,
-  detailedBookIdReducer,
-  loginStatusReducer,
+  id: detailedBookIdReducer,
+  loginStatus: loginStatusReducer,
 });
 
 export default rootReducer;
