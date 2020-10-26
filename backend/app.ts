@@ -147,6 +147,6 @@ app.use(
 );
 
 //Listens for API calls
-app.listen(3001, () => {
-  console.log("Server running at 3001");
+app.listen(80, '0.0.0.0', () => {
+  console.log("Server running at port 80");
 });
