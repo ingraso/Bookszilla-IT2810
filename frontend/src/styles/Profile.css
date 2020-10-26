@@ -1,0 +1,29 @@
+#profile-page {
+  position: relative;
+  width: calc(100vw - 80px);
+  background-color: white;
+  margin: 40px;
+}
+
+#profile-page button {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+#favorites.favorites,
+#wish-to-read.wish-to-read,
+#have-read.have-read {
+  background-color: #fa8072;
+}
+
+@media screen and (max-width: 850px) {
+  #profile-page.filter,
+  #profile-page.home,
+  #profile-page.book {
+    display: none;
+  }
+
+  #info-on-top-container {
+    text-align: center;
+  }
+}

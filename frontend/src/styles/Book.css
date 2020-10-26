@@ -1,5 +1,5 @@
 #book-container {
-  margin-right: 21vw;
+  margin-right: calc(21vw + 10px);
   display: flex;
   flex-wrap: wrap;
   background-color: #ffffff;
@@ -21,7 +21,8 @@
   object-position: 45%;
 }
 
-.single-book img:hover {
+.single-book img:hover,
+.single-book .title:hover {
   cursor: pointer;
 }
 
@@ -29,12 +30,10 @@
   font-style: italic;
 }
 
-.single-book .title:hover {
-  cursor: pointer;
-}
-
-.single-book .author {
-  margin: 0;
+@media screen and (min-width: 851px) {
+  #book-container {
+    max-width: 60vw;
+  }
 }
 
 @media only screen and (max-width: 850px) {
