@@ -10,7 +10,8 @@
   width: 45%;
 }
 
-input[type="text"] {
+/*Styling for seach-field*/
+#search input[type="text"] {
   width: 85%;
   box-sizing: border-box;
   border-width: 2px 0 2px 2px;
