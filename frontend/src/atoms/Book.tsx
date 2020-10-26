@@ -24,7 +24,6 @@ export const Book = (props: BookProps) => {
     <div
       id={String(props.id)}
       className="single-book"
-      onClick={() => updateDetailedBook(props.id)}
     >
       <img src={props.cover} alt="`SOME book cover" />
       <p className="title">{props.title}</p>
