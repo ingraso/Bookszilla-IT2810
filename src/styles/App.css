@@ -1,3 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 851px) {
   #profile-page-container.profile-page {
     display: block;

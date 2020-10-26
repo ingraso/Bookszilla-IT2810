@@ -3,7 +3,7 @@
 }
 
 @media screen and (max-width: 850px) {
-  /*Styling for the navbar*/
+  /* Styling for the navbar */
   #navbar {
     display: flex;
     position: fixed;
@@ -16,7 +16,7 @@
     border-top: 1px solid #ccc;
   }
 
-  /*Styling for the navbar-buttons*/
+  /* Styling for the navbar-buttons */
   #navbar-home.home,
   #navbar-profile.profile,
   #navbar-filter.filter,
@@ -28,9 +28,6 @@
   #navbar button {
     background-color: white;
     padding: none;
-    outline: none;
-    border: none;
-    margin: 0;
     padding: 0 5px;
   }
 }

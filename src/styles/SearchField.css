@@ -29,7 +29,6 @@ input[type="text"] {
   box-sizing: border-box;
   width: 15%;
   height: 40px;
-  padding: 0;
   border: 2px solid #ccc;
   border-radius: 0 4px 4px 0;
 }

@@ -3,7 +3,6 @@
   width: calc(100vw - 80px);
   background-color: white;
   margin: 40px;
-  padding: 0;
 }
 
 #profile-page button {
@@ -22,5 +21,9 @@
   #profile-page.home,
   #profile-page.book {
     display: none;
+  }
+
+  #info-on-top-container {
+    text-align: center;
   }
 }
