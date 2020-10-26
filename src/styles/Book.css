@@ -6,7 +6,7 @@
   justify-content: space-evenly;
 }
 
-.book {
+.single-book {
   display: inline-block;
   margin: 5px;
   padding: 10px;
@@ -14,32 +14,40 @@
   border: 1px solid #eeeeee;
 }
 
-.book img {
+.single-book img {
   width: 150px;
   height: 200px;
   object-fit: cover;
   object-position: 45%;
 }
 
-.book img:hover {
+.single-book img:hover {
   cursor: pointer;
 }
 
-.book .title {
+.single-book .title {
   font-style: italic;
 }
 
-.book .title:hover {
+.single-book .title:hover {
   cursor: pointer;
 }
 
-.book .author {
+.single-book .author {
   margin: 0;
 }
 
 @media only screen and (max-width: 850px) {
-  .book img {
+  .single-book img {
     width: 100px;
     height: 150px;
+  }
+
+  .single-book {
+    width: 35%;
+  }
+
+  #book-container {
+    margin: 0;
   }
 }

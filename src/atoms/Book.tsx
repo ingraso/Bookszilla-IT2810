@@ -1,6 +1,4 @@
 import React from "react";
-import { changeDetailedBook } from "../redux/actions";
-import store from "../redux/store";
 import "../styles/Book.css";
 
 interface BookProps {
@@ -10,9 +8,9 @@ interface BookProps {
   cover: string;
 }
 
-const updateDetailedBook = (id: number) => {
+/*const updateDetailedBook = (id: number) => {
   store.dispatch(changeDetailedBook(id));
-};
+};*/
 
 /**
  * Book is a representation of a book, with its title,
@@ -21,7 +19,7 @@ const updateDetailedBook = (id: number) => {
  */
 export const Book = (props: BookProps) => {
   return (
-    <div className="book" onClick={() => updateDetailedBook(props.id)}>
+    <div id={String(props.id)} className="single-book">
       <img src={props.cover} alt="`SOME book cover" />
       <p className="title">{props.title}</p>
       <p className="author">by {props.author}</p>
