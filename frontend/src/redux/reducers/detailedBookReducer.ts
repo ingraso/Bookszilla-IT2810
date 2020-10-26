@@ -7,7 +7,6 @@ const initialState = {
 const detailedBookIdReducer = (state = initialState, action: any) => {
   if (action.type === UPDATE_DETAILED_BOOK_ID) {
     return Object.assign({}, state, {
-      ...state,
       id: action.id,
     });
   }

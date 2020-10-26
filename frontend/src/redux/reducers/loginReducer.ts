@@ -7,7 +7,6 @@ const initialState = {
 const loginStatusReducer = (state = initialState, action: any) => {
   if (action.type === CHANGE_LOGIN_STATUS) {
     return Object.assign({}, state, {
-      ...state,
       loginStatus: action.loginStatus,
     });
   }
