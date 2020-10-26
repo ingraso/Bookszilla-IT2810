@@ -19,7 +19,7 @@ when a book i selected */
 }
 
 /* Styling for the close-button */
-.close-button {
+#close-button {
   position: absolute;
   right: 0;
   width: 30px;
@@ -31,7 +31,7 @@ when a book i selected */
   outline: none;
 }
 
-.close-button:hover {
+#close-button:hover {
   background-color: #ff4949;
   cursor: pointer;
 }

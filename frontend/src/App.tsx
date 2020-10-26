@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./containers/Header";
+import Header from "./atoms/Header";
 import SearchFieldAndSort from "./containers/SearchFieldAndSort";
 import FilterAndBooks from "./containers/FilterAndBooks";
 import ToTop from "./atoms/ToTop";
