@@ -1,8 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import store from "../redux/store";
 import "../styles/Header.css";
 import UserForm from "../atoms/UserForm";
+import { changeLoginStatus } from "../redux/actions";
 
 type HeaderProps = {
   changePage: Dispatch<SetStateAction<string>>;
@@ -33,6 +34,8 @@ const Header = ({ changePage }: HeaderProps) => {
     updateDisplayLoginForm(!displayLoginForm);
   };
 
+  const dispatch = useDispatch();
+
   const loginStatus: boolean = useSelector(
     (state: any) => state.loginStatus.loginStatus
   );
@@ -55,7 +58,12 @@ const Header = ({ changePage }: HeaderProps) => {
           </button>
         )}
         {isloggedIn ? (
-          <button className="login-buttons">SIGN OUT</button>
+          <button
+            className="login-buttons"
+            onClick={() => dispatch(changeLoginStatus(false))}
+          >
+            SIGN OUT
+          </button>
         ) : (
           <button className="login-buttons" onClick={toggleLoginForm}>
             SIGN IN

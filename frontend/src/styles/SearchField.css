@@ -84,6 +84,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar*/
   }
 
   .profile#search-field-and-sort-container,
+  .login#search-field-and-sort-container,
   .filter#search-field-and-sort-container,
   .book#search-field-and-sort-container {
     display: none;

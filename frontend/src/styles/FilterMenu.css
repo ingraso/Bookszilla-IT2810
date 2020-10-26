@@ -88,6 +88,7 @@ that comes with a normal html checkbox */
 
 @media screen and (max-width: 850px) {
   .home#filter-menu,
+  .login#filter-menu,
   .profile#filter-menu,
   .book#filter-menu {
     display: none;

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
+import { useSelector } from "react-redux";
 import { registerUser, signInUser } from "../assets/userHandling";
+import "../styles/UserForm.css";
 
 interface UserFormProps {
   isLoginForm: boolean;
@@ -12,6 +14,8 @@ const UserForm = (props: UserFormProps) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
+
+  const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
 
   const validateInput = () => {
     if (props.isLoginForm) {
@@ -41,7 +45,7 @@ const UserForm = (props: UserFormProps) => {
   };
 
   return (
-    <div id="popup">
+    <div id="popup" className={phonePage}>
       <div id="popup-content">
         <button
           id="popup-close-button"

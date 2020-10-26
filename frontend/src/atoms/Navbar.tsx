@@ -2,10 +2,10 @@ import React, { Dispatch, SetStateAction } from "react";
 import { MdAccountCircle } from "react-icons/md";
 import { FiFilter } from "react-icons/fi";
 import { MdHome } from "react-icons/md";
-import { BsBook } from "react-icons/bs";
+import { BsBook, BsBoxArrowInRight } from "react-icons/bs";
 import { BsBoxArrowRight } from "react-icons/bs";
 import "../styles/Navbar.css";
-import { changePhonePage } from "../redux/actions";
+import { changeLoginStatus, changePhonePage } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 type NavbarProps = {
@@ -15,7 +15,7 @@ type NavbarProps = {
 /**
  * Navbar is a component for the navigation bar that will be shown on
  * screens with width <= 850px.
- * @var phonePage uses redux store to decide which button should me marked.
+ * @var phonePage uses redux store to decide which button should be marked.
  * @var dispatch is used to move between different pages on click.
  */
 
@@ -23,6 +23,10 @@ const Navbar = ({ changePage }: NavbarProps) => {
   const dispatch = useDispatch();
 
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
+
+  const loginStatus: boolean = useSelector(
+    (state: any) => state.loginStatus.loginStatus
+  );
 
   function topFunction() {
     document.body.scrollTop = 0;
@@ -37,6 +41,10 @@ const Navbar = ({ changePage }: NavbarProps) => {
       topFunction();
     }
   }
+
+  const displaySignIn = () => {
+    dispatch(changePhonePage("login"));
+  };
 
   return (
     <div id="navbar">
@@ -68,9 +76,19 @@ const Navbar = ({ changePage }: NavbarProps) => {
       >
         <BsBook size="30px" />
       </button>
-      <button id="navbar-sign-out" className={phonePage}>
-        <BsBoxArrowRight size="30px" />
-      </button>
+      {loginStatus ? (
+        <button
+          id="navbar-sign-out"
+          className={phonePage.phonePage}
+          onClick={() => dispatch(changeLoginStatus(false))}
+        >
+          <BsBoxArrowRight size="30px" />
+        </button>
+      ) : (
+        <button id="navbar-sign-in" className={phonePage.phonePage}>
+          <BsBoxArrowInRight size="30px" onClick={() => displaySignIn} />
+        </button>
+      )}
     </div>
   );
 };
