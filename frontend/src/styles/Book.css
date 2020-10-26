@@ -6,12 +6,6 @@
   justify-content: space-evenly;
 }
 
-@media screen and (min-width: 851px) {
-  #book-container {
-    max-width: 60vw;
-  }
-}
-
 .single-book {
   display: inline-block;
   margin: 5px;
@@ -34,6 +28,12 @@
 
 .single-book .title {
   font-style: italic;
+}
+
+@media screen and (min-width: 851px) {
+  #book-container {
+    max-width: 60vw;
+  }
 }
 
 @media only screen and (max-width: 850px) {

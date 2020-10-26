@@ -19,7 +19,7 @@ type HeaderProps = {
  */
 
 const Header = ({ changePage }: HeaderProps) => {
-  const [isloggedIn, setIsLoggedIn] = useState<boolean>(true);
+  const [isloggedIn, setIsLoggedIn] = useState<boolean>();
   const [displayRegisterForm, updateDisplayRegisterForm] = useState<boolean>(
     false
   );
