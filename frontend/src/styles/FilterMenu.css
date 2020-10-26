@@ -30,8 +30,9 @@ label {
   line-height: 20px;
 }
 
-/* Hide the browser's default checkbox, can not remove it, 
-as that would make it impossible to check our new boxes */
+/* Hide the browser's default checkbox. Can not remove it, 
+as that would make it impossible to use the checkbox-functionalities 
+that comes with a normal html checkbox */
 .container input {
   position: absolute;
   opacity: 0;
