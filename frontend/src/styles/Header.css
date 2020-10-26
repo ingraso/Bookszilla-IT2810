@@ -1,3 +1,4 @@
+/* Styling for the header */
 header {
   display: flex;
   justify-content: space-between;
@@ -9,6 +10,13 @@ header {
   border-bottom: 1px solid #ccc;
 }
 
+/* Styling for the title */
+#title-button {
+  background-color: white;
+  padding: none;
+  margin: none;
+}
+
 #title {
   font-size: 18px;
   font-weight: bold;
@@ -16,6 +24,7 @@ header {
   padding: 0;
 }
 
+/* Styling for the other buttons in the header */
 .header-right {
   display: block;
   float: right;
@@ -26,13 +35,10 @@ header {
   font-size: 18px;
   line-height: 18px;
   background-color: white;
-  border: none;
-  outline: none;
 }
 
 .header-right button:hover {
   text-decoration: underline;
-  cursor: pointer;
 }
 
 .login-buttons {
@@ -92,12 +98,7 @@ input[type="password"] {
   padding: 10px;
 }
 
-@media screen and (max-width: 850px) {
-  .header-right {
-    display: none;
-  }
-}
-
+/* Styling for the header when the screen width is small */
 @media screen and (max-width: 850px) {
   .header-right {
     display: none;

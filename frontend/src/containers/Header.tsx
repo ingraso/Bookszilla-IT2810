@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
 import store from "../redux/store";
 import "../styles/Header.css";
 import UserForm from "../atoms/UserForm";
+
+type HeaderProps = {
+  changePage: Dispatch<SetStateAction<string>>;
+};
 
 /**
  * Header is a component containing every item in the header. What buttons
@@ -14,8 +18,8 @@ import UserForm from "../atoms/UserForm";
  *    button, and removes on valid submit or closing the form.
  */
 
-const Header = () => {
-  const [isloggedIn, setIsLoggedIn] = useState<boolean>();
+const Header = ({ changePage }: HeaderProps) => {
+  const [isloggedIn, setIsLoggedIn] = useState<boolean>(true);
   const [displayRegisterForm, updateDisplayRegisterForm] = useState<boolean>(
     false
   );
@@ -37,10 +41,14 @@ const Header = () => {
 
   return (
     <header>
-      <h3 id="title">[SETT INN EN GOD TITTEL HER]</h3>
+      <button id="title-button" onClick={() => changePage("main-page")}>
+        <h3 id="title">[SETT INN EN GOD TITTEL HER]</h3>
+      </button>
       <div className="header-right">
         {isloggedIn ? (
-          <button id="profile-button">PROFILE</button>
+          <button id="profile" onClick={() => changePage("profile-page")}>
+            PROFILE
+          </button>
         ) : (
           <button id="register-button" onClick={toggleRegisterForm}>
             REGISTER

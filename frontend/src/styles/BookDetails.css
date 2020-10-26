@@ -27,13 +27,10 @@ when a book i selected */
   padding: 5px;
   color: white;
   background-color: rgba(255, 73, 73, 0.8);
-  border: none;
-  outline: none;
 }
 
 .close-button:hover {
   background-color: #ff4949;
-  cursor: pointer;
 }
 
 #book-details img {
@@ -57,19 +54,21 @@ when a book i selected */
 @media screen and (max-width: 850px) {
   #book-details.filter,
   #book-details.profile,
-  #book-details.home {
-    display: none;
-  }
-
+  #book-details.home,
   #close-button {
     display: none;
   }
 
   .opened-book#book-details {
     position: static;
-    width: calc(100vw - 20px);
-    padding: 10px;
+    width: auto;
+    margin: 10px;
     border: none;
-    height: calc(100vh - 100px);
+    height: auto;
+  }
+
+  .opened-book p {
+    margin: auto;
+    margin-bottom: 10px;
   }
 }
