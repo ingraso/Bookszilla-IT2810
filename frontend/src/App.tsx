@@ -13,11 +13,11 @@ import "./styles/App.css";
  * App is at the top of the components hierarchy of the webpage.
  * @var pageShowing is used for screens where the width is > 850px, to decide if
  * the profile-page or the main-page should be shown. If pageShowing === "main-page"
- * the main-page with searchfield, filter, books ++ is shown, and if 
+ * the main-page with searchfield, filter, books ++ is shown, and if
  * pageShowing === "profile-page", the profile-page is shown.
  */
 
-function App() {
+const App = () => {
   const [pageShowing, changePageShowing] = useState("main-page");
 
   return (
@@ -40,6 +40,6 @@ function App() {
       <Navbar changePage={changePageShowing} />
     </div>
   );
-}
+};
 
 export default App;

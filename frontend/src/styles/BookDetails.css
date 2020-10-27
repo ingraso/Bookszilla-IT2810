@@ -1,5 +1,5 @@
 /* Style the area where additional information about a book is given, 
-when a book i selected */
+when a book is selected */
 .opened-book#book-details {
   display: flex;
   flex-direction: column;
@@ -50,9 +50,10 @@ when a book i selected */
   width: 80%;
 }
 
-/* When the screen-width is small, book-details should not allways be shown */
+/* When the screen-width is small, book-details should not always be shown */
 @media screen and (max-width: 850px) {
   #book-details.filter,
+  #book-details.login,
   #book-details.profile,
   #book-details.home,
   #close-button {

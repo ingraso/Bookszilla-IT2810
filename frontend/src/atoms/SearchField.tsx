@@ -7,13 +7,12 @@ import { MdSearch } from "react-icons/md";
  */
 
 const SearchField = () => {
-
   return (
     <div id="search">
       <input
         type="text"
         id="search-bar"
-        placeholder="Search for your favorite books"
+        placeholder="Search for your favorite book"
       />
       <button className="red-button" id="search-button">
         <MdSearch size="30px" />
