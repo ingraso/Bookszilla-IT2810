@@ -28,6 +28,7 @@
 }
 
 #popup input[type="text"],
+#userHandling #username-input,
 input[type="password"] {
   display: block;
   width: 100%;
@@ -45,25 +46,14 @@ input[type="password"] {
   margin: 10px 10px 10px 0;
 }
 
-#popup input[type="submit"] {
+#popup input[type="submit"],
+#userHandling input[type="submit"] {
   margin: 10px;
   padding: 10px;
 }
 
 @media screen and (max-width: 850px) {
-  .filter#popup,
-  .login#popup,
-  .profile#popup,
-  .book#popup {
+  #popup-close-button {
     display: none;
-  }
-
-  #popup {
-    width: 100vw;
-    min-height: 60vh;
-    margin: 10px 0 40px 0;
-    overflow-x: hidden;
-    padding: 10px;
-    border: none;
   }
 }

@@ -45,59 +45,57 @@ const UserForm = (props: UserFormProps) => {
   };
 
   return (
-    <div id="popup" className={phonePage}>
-      <div id="popup-content">
-        <button
-          id="popup-close-button"
-          className="red-button"
-          onClick={
-            props.isLoginForm ? props.toggleLoginForm : props.toggleRegisterForm
-          }
-        >
-          <MdClose size="20px" />
-        </button>
-        <h3>{props.isLoginForm ? "Sign in" : "Register user"}</h3>
-        <form>
-          <label>Username</label>
-          <input
-            id="username-input"
-            name="username"
-            value={username}
-            type="text"
-            placeholder="Type username"
-            onChange={handleInputChange}
-            required
-          />
-          <br />
-          <label>Password</label>
-          <input
-            id="password-input"
-            name="password"
-            value={password}
-            type="password"
-            placeholder="Type password"
-            onChange={handleInputChange}
-            required
-          />
-          <br />
-          {props.isLoginForm ? null : (
-            <>
-              <label>Confirm password</label>
-              <input
-                id="confirm-password-input"
-                name="confirm-password"
-                value={passwordConfirmation}
-                type="password"
-                placeholder="Type password again"
-                onChange={handleInputChange}
-                required
-              />
-            </>
-          )}
-          <br />
-          <input type="submit" className="red-button" onClick={validateInput} />
-        </form>
-      </div>
+    <div className={phonePage}>
+      <button
+        id="popup-close-button"
+        className="red-button"
+        onClick={
+          props.isLoginForm ? props.toggleLoginForm : props.toggleRegisterForm
+        }
+      >
+        <MdClose size="20px" />
+      </button>
+      <h3>{props.isLoginForm ? "Sign in" : "Register user"}</h3>
+      <form>
+        <label>Username</label>
+        <input
+          id="username-input"
+          name="username"
+          value={username}
+          type="text"
+          placeholder="Type username"
+          onChange={handleInputChange}
+          required
+        />
+        <br />
+        <label>Password</label>
+        <input
+          id="password-input"
+          name="password"
+          value={password}
+          type="password"
+          placeholder="Type password"
+          onChange={handleInputChange}
+          required
+        />
+        <br />
+        {props.isLoginForm ? null : (
+          <>
+            <label>Confirm password</label>
+            <input
+              id="confirm-password-input"
+              name="confirm-password"
+              value={passwordConfirmation}
+              type="password"
+              placeholder="Type password again"
+              onChange={handleInputChange}
+              required
+            />
+          </>
+        )}
+        <br />
+        <input type="submit" className="red-button" onClick={validateInput} />
+      </form>
     </div>
   );
 };
