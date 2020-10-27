@@ -10,6 +10,27 @@ interface Book {
   image: string;
 }
 
+// $cursor er en variabel -> $ betyr variabel. Men hvor skal den være lagret??
+
+/**
+ * For å lage cursor-based pagination må vi: we keep a reference to the last object 
+ * fetched and information about the sort order used.
+ */
+export const GET_NEXT_BOOKS = gql`
+  query MoreBooks($cursor: String) {  
+    moreBooks(cursor: $cursor) {
+      cursor
+      books {
+        id
+        title
+        author
+        genres
+        image
+      }
+    }
+  }
+`;
+
 export const GET_ALL_BOOKS = gql`
   {
    books{
@@ -19,6 +40,18 @@ export const GET_ALL_BOOKS = gql`
      genres
      image
    }
+  }
+`;
+
+export const GET_BOOKS_BY_TITLE = (title: string) => gql`
+  {
+    bookByTitle(title:$title){
+      id
+      title
+      author
+      genres
+      image
+    }
   }
 `;
 /*
