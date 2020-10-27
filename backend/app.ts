@@ -17,8 +17,11 @@ const {
   Source,
 } = require("graphql");
 const { Context } = require("vm");
-const app = Express();
 const cors = require("cors");
+
+const app = Express();
+app.use(cors(3002));
+
 
 //Connects to the database, authenticating with a user that has read and write privileges
 mongoose
@@ -147,6 +150,6 @@ app.use(
 );
 
 //Listens for API calls
-app.listen(3001, () => {
-  console.log("Server running at 3001");
+app.listen(3002, () => {
+  console.log("Server running at 3002");
 });
