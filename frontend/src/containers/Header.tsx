@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { useSelector } from "react-redux";
-import store from "../redux/store";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/Header.css";
 import UserForm from "../atoms/UserForm";
+import { changeLoginStatus } from "../redux/actions";
 
 type HeaderProps = {
   changePage: Dispatch<SetStateAction<string>>;
@@ -19,7 +19,10 @@ type HeaderProps = {
  */
 
 const Header = ({ changePage }: HeaderProps) => {
-  const [isloggedIn, setIsLoggedIn] = useState<boolean>();
+  const loginStatus: boolean = useSelector(
+    (state: any) => state.loginStatus.loginStatus
+  );
+
   const [displayRegisterForm, updateDisplayRegisterForm] = useState<boolean>(
     false
   );
@@ -27,17 +30,15 @@ const Header = ({ changePage }: HeaderProps) => {
 
   const toggleRegisterForm = () => {
     updateDisplayRegisterForm(!displayRegisterForm);
+    updateDisplayLoginForm(false);
   };
 
   const toggleLoginForm = () => {
     updateDisplayLoginForm(!displayLoginForm);
+    updateDisplayRegisterForm(false);
   };
 
-  const loginStatus: boolean = useSelector(
-    (state: any) => state.loginStatus.loginStatus
-  );
-
-  store.subscribe(() => setIsLoggedIn(loginStatus));
+  const dispatch = useDispatch();
 
   return (
     <header>
@@ -45,7 +46,7 @@ const Header = ({ changePage }: HeaderProps) => {
         <h3 id="title">[SETT INN EN GOD TITTEL HER]</h3>
       </button>
       <div className="header-right">
-        {isloggedIn ? (
+        {loginStatus ? (
           <button id="profile" onClick={() => changePage("profile-page")}>
             PROFILE
           </button>
@@ -54,21 +55,35 @@ const Header = ({ changePage }: HeaderProps) => {
             REGISTER
           </button>
         )}
-        {isloggedIn ? (
-          <button className="login-buttons">SIGN OUT</button>
+        {loginStatus ? (
+          <button
+            className="login-buttons"
+            onClick={() => dispatch(changeLoginStatus(false))}
+          >
+            SIGN OUT
+          </button>
         ) : (
           <button className="login-buttons" onClick={toggleLoginForm}>
             SIGN IN
           </button>
         )}
+
         {displayRegisterForm ? (
-          <UserForm
-            isLoginForm={false}
-            toggleRegisterForm={toggleRegisterForm}
-          />
+          <div id="popup">
+            <div id="popup-content">
+              <UserForm
+                isLoginForm={false}
+                toggleRegisterForm={toggleRegisterForm}
+              />
+            </div>
+          </div>
         ) : null}
         {displayLoginForm ? (
-          <UserForm isLoginForm={true} toggleLoginForm={toggleLoginForm} />
+          <div id="popup">
+            <div id="popup-content">
+              <UserForm isLoginForm={true} toggleLoginForm={toggleLoginForm} />
+            </div>
+          </div>
         ) : null}
       </div>
     </header>

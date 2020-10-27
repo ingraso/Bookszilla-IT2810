@@ -21,8 +21,9 @@
   #navbar-profile.profile,
   #navbar-filter.filter,
   #navbar-book.book,
-  #navbar-sign-out:hover {
-    color: #ff4949 !important;
+  #navbar-sign-out:hover,
+  #navbar-sign-in {
+    color: #ff4949;
   }
 
   #navbar button {

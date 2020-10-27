@@ -14,7 +14,9 @@ const BookDetails = () => {
   const [bookDetailsClassName, setBookDetailsClassName] = useState<string>(
     "closed-book"
   );
+
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
+  console.log(phonePage)
 
   // remember to remove this after retrieving data from db
   let title: string = "The Spice Shelf Girls";
@@ -26,8 +28,13 @@ const BookDetails = () => {
   // now I think it will display a book on other changes in the store as well
   store.subscribe(() => displayDetailedView());
 
+  const loginStatus: boolean = useSelector(
+    (state: any) => state.loginStatus.loginStatus
+  );
+
   const displayDetailedView = () => {
     setBookDetailsClassName("opened-book");
+
     // if id !== 0 => get data for book with id 'props.id' and display this
 
     console.log(store.getState().id); // to show that another book cover is clicked
@@ -55,27 +62,31 @@ const BookDetails = () => {
         })}
       </p>
 
-      <button
-        id="favorite-button"
-        className="red-button"
-        onClick={notImplemented}
-      >
-        Favorite
-      </button>
-      <button
-        id="wish-to-read-button"
-        className="red-button"
-        onClick={notImplemented}
-      >
-        Wish to read
-      </button>
-      <button
-        id="have-read-button"
-        className="red-button"
-        onClick={notImplemented}
-      >
-        Have read
-      </button>
+      {loginStatus ? (
+        <>
+          <button
+            id="favorite-button"
+            className="red-button"
+            onClick={notImplemented}
+          >
+            Favorite
+          </button>
+          <button
+            id="wish-to-read-button"
+            className="red-button"
+            onClick={notImplemented}
+          >
+            Wish to read
+          </button>
+          <button
+            id="have-read-button"
+            className="red-button"
+            onClick={notImplemented}
+          >
+            Have read
+          </button>
+        </>
+      ) : null}
     </div>
   );
 };

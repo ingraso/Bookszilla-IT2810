@@ -48,5 +48,10 @@
 
   #book-container {
     margin: 0;
+    margin-bottom: 60px;
+  }
+
+  #detailed-book-phone-info {
+    margin: 50px 20px;
   }
 }

@@ -4,6 +4,8 @@
 
 @media screen and (max-width: 850px) {
   .filter#book-container,
+  .login#book-container,
+  .profile#book-container,
   .book#book-container {
     display: none;
   }

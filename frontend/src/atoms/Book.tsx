@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { changeDetailedBook } from "../redux/actions";
+import { changeDetailedBook, changePhonePage } from "../redux/actions";
 import "../styles/Book.css";
 
 interface BookProps {
@@ -18,6 +18,11 @@ interface BookProps {
 export const Book = (props: BookProps) => {
   const dispatch = useDispatch();
 
+  const handleBookClick = (id: number) => {
+    updateDetailedBook(id);
+    dispatch(changePhonePage("book"));
+  };
+
   const updateDetailedBook = (id: number) => {
     dispatch(changeDetailedBook(id));
   };
@@ -26,7 +31,7 @@ export const Book = (props: BookProps) => {
     <div
       id={String(props.id)}
       className="single-book"
-      onClick={() => updateDetailedBook(props.id)}
+      onClick={() => handleBookClick(props.id)}
     >
       <img src={props.cover} alt="`SOME book cover" />
       <p className="title">{props.title}</p>

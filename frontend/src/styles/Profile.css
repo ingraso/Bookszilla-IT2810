@@ -5,7 +5,7 @@
   margin: 40px;
 }
 
-#profile-page button {
+#profile-page button:not(:first-child) {
   padding: 10px;
   margin-bottom: 20px;
 }
@@ -16,6 +16,11 @@
   background-color: #fa8072;
 }
 
+#userHandling,
+#profile-sign-out {
+  display: none;
+}
+
 @media screen and (max-width: 850px) {
   #profile-page.filter,
   #profile-page.home,
@@ -23,7 +28,40 @@
     display: none;
   }
 
+  #profile-page {
+    margin: 0 auto;
+  }
+
   #info-on-top-container {
     text-align: center;
+    margin-top: 20px;
+  }
+
+  #login-page {
+    text-align: center;
+  }
+
+  #userHandling {
+    display: block;
+    padding: 10%;
+  }
+
+  #userHandling h3 {
+    margin-bottom: 15px;
+  }
+
+  #userHandlingLogin,
+  #userHandlingRegister {
+    width: 175px;
+    display: block;
+    padding: 15px;
+    margin: 5% auto;
+  }
+
+  #profile-sign-out {
+    display: block;
+    background-color: white;
+    position: absolute;
+    right: 0;
   }
 }
