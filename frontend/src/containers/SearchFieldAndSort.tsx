@@ -14,6 +14,11 @@ import { useSelector } from "react-redux";
 const SearchFieldAndSort = () => {
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
 
+  const updateSort = (sortBy: string) => {
+    //TODO: update redux to the value of sortBy
+    console.log("UpdateSort: ", sortBy);
+  };
+
   return (
     <div id="search-field-and-sort-container" className={phonePage}>
       <SearchField />
@@ -22,10 +27,10 @@ const SearchFieldAndSort = () => {
           <MdSwapVert size="30px" />
         </button>
         <div className="dropdown-content">
-          <button className="red-button">Title (A-Z)</button>
-          <button className="red-button">Title (Z-A)</button>
-          <button className="red-button">Published (new-old)</button>
-          <button className="red-button">Published (old-new)</button>
+          <button className="red-button" onClick={() => {updateSort('title')}}>Title (A-Z)</button>
+          <button className="red-button" onClick={() => {updateSort('-title')}}>Title (Z-A)</button>
+          <button className="red-button" onClick={() => {updateSort('author')}}>Author (A-Z)</button>
+          <button className="red-button" onClick={() => {updateSort('-author')}}>Author (Z-A)</button>
         </div>
       </div>
     </div>

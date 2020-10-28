@@ -18,8 +18,9 @@ export const BookContainer = () => {
   const bookPage: any = useSelector((state: any) => state.bookPage.bookPage);
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   const search: string = useSelector((state: any) => state.search.searchString);
+  const sortBy: string = "title"; //TODO: connect to redux for sort
   const { loading, error, data } = useQuery(GET_BOOKS_BY_SEARCH, {
-    variables: { search: search, page: bookPage, size: 18 },
+    variables: { search: search, page: bookPage, size: 18, sortBy: sortBy },
   });
 
   const changeBookPageHandler = (increase: boolean) => {
