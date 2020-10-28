@@ -3,7 +3,7 @@ export const CHANGE_LOGIN_STATUS = "CHANGE_LOGIN_STATUS";
 export const UPDATE_PHONE_PAGE = "UPDATE_PHONE_PAGE";
 export const UPDATE_BOOK_PAGE = "UPDATE_BOOK_PAGE";
 
-export const changeDetailedBook = (id: number) => ({
+export const changeDetailedBook = (id: string) => ({
   type: UPDATE_DETAILED_BOOK_ID,
   id,
 });

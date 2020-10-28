@@ -35,8 +35,6 @@ when a book is selected */
 
 #book-details img {
   width: 100%;
-  /* Only for testing, remove when we get the real data */
-  transform: rotate(90deg);
 }
 
 #book-details .title {

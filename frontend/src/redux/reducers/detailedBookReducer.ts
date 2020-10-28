@@ -1,7 +1,7 @@
 import { UPDATE_DETAILED_BOOK_ID } from "../actions";
 
 const initialState = {
-  id: 0,
+  id: "",
 };
 
 const detailedBookIdReducer = (state = initialState, action: any) => {
