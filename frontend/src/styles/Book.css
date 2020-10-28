@@ -8,6 +8,7 @@
 
 .single-book {
   display: inline-block;
+  width: 200px;
   margin: 5px;
   padding: 10px;
   text-align: center;
@@ -28,6 +29,12 @@
 
 .single-book .title {
   font-style: italic;
+}
+
+#book-pages-button button {
+  font-size: 16px;
+  padding: 2px 10px;
+  height: 40px;
 }
 
 @media screen and (min-width: 851px) {
