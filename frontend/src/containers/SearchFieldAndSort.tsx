@@ -18,7 +18,6 @@ const SearchFieldAndSort = () => {
 
   const updateSort = (sortBy: string) => {
     dispatch(updateSortBy(sortBy));
-    console.log("UpdateSort: ", sortBy);
   };
 
   return (
