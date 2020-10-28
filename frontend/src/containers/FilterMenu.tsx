@@ -14,17 +14,15 @@ const FilterMenu = () => {
 
   return (
     <div id="filter-menu" className={phonePage}>
-      <label>LANGUAGE</label>
-      <Checkbox id="language-eng" text="English" />
-      <Checkbox text="Spanish" />
-
-      <label>GENRE</label>
-      <Checkbox text="Romace" />
-      <Checkbox text="Horror" />
-
-      <label>PUBLISHER</label>
-      <Checkbox text="Wiley" />
-      <Checkbox text="Aschehoug" />
+      <label>GENRES TO SEE</label>
+      <Checkbox id="calendar" text="Calendars" />
+      <Checkbox id="comic" text="Comics & Graphic Novels" />
+      <Checkbox id="humor" text="Humor & Entertainment" />
+      <Checkbox id="literature" text="Literature & Fiction" />
+      <Checkbox id="mystery" text="Mystery, Thriller & Suspense" />
+      <Checkbox id="romance" text="Romance" />
+      <Checkbox id="fantasy" text="Science Fiction & Fantasy" />
+      <Checkbox id="test" text="Test Preparation" />
     </div>
   );
 };

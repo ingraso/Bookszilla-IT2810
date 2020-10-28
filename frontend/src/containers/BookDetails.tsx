@@ -16,7 +16,6 @@ const BookDetails = () => {
   );
 
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
-  console.log(phonePage)
 
   // remember to remove this after retrieving data from db
   let title: string = "The Spice Shelf Girls";
@@ -36,8 +35,6 @@ const BookDetails = () => {
     setBookDetailsClassName("opened-book");
 
     // if id !== 0 => get data for book with id 'props.id' and display this
-
-    console.log(store.getState().id); // to show that another book cover is clicked
   };
 
   const notImplemented = () => {

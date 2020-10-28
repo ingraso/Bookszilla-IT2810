@@ -2,6 +2,8 @@ export const UPDATE_DETAILED_BOOK_ID = "UPDATE_DETAILED_BOOK_ID";
 export const CHANGE_LOGIN_STATUS = "CHANGE_LOGIN_STATUS";
 export const UPDATE_PHONE_PAGE = "UPDATE_PHONE_PAGE";
 export const UPDATE_BOOK_PAGE = "UPDATE_BOOK_PAGE";
+export const ADD_FILTER = "ADD_FILTER";
+export const REMOVE_FILTER = "REMOVE_FILTER";
 
 export const changeDetailedBook = (id: number) => ({
   type: UPDATE_DETAILED_BOOK_ID,
@@ -21,4 +23,14 @@ export const changePhonePage = (newPage: string) => ({
 export const changeBookPage = (increase: boolean) => ({
   type: UPDATE_BOOK_PAGE,
   increase,
+});
+
+export const addFilter = (filter: string) => ({
+  type: ADD_FILTER,
+  filter,
+});
+
+export const removeFilter = (filter: string) => ({
+  type: REMOVE_FILTER,
+  filter,
 });
