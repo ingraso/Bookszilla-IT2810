@@ -4,6 +4,7 @@ import loginStatusReducer from "./loginReducer";
 import phonePageReducer from "./phonePage";
 import bookPageReducer from "./bookPageReducer";
 import searchReducer from "./searchReducer";
+import sortByReducer from "./sortByReducer";
 
 const rootReducer = combineReducers<any>({
   phonePage: phonePageReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers<any>({
   loginStatus: loginStatusReducer,
   bookPage: bookPageReducer,
   search: searchReducer,
+  sortBy: sortByReducer,
 });
 
 export default rootReducer;
