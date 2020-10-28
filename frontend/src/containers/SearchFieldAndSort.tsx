@@ -2,7 +2,8 @@ import React from "react";
 import SearchField from "../atoms/SearchField";
 import { MdSwapVert } from "react-icons/md";
 import "../styles/SearchField.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateSortBy } from "../redux/actions";
 
 /**
  * SearchFiledAndSort is a component that contains the searchfield and the
@@ -13,9 +14,10 @@ import { useSelector } from "react-redux";
 
 const SearchFieldAndSort = () => {
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
+  const dispatch = useDispatch();
 
   const updateSort = (sortBy: string) => {
-    //TODO: update redux to the value of sortBy
+    dispatch(updateSortBy(sortBy));
     console.log("UpdateSort: ", sortBy);
   };
 

@@ -18,7 +18,7 @@ export const BookContainer = () => {
   const bookPage: any = useSelector((state: any) => state.bookPage.bookPage);
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   const search: string = useSelector((state: any) => state.search.searchString);
-  const sortBy: string = "title"; //TODO: connect to redux for sort
+  const sortBy: string = useSelector((state: any) => state.sortBy.sortBy);
   const { loading, error, data } = useQuery(GET_BOOKS_BY_SEARCH, {
     variables: { search: search, page: bookPage, size: 18, sortBy: sortBy },
   });
@@ -42,7 +42,7 @@ export const BookContainer = () => {
               key={bookData.id}
               id={Number(bookData.id)}
               title={bookData.title}
-              author={bookData.author}
+              author={bookData.author !== "" ? bookData.author : "Unknown"}
               cover={bookData.image}
             />
           );
