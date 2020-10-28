@@ -21,8 +21,8 @@ const BookDetails = () => {
 
   const bookId: any = useSelector((state: any) => state.id.id);
 
-  const {loading, error, data} = useQuery(GET_BOOK_BY_ID, {
-    variables: {id: bookId},
+  const { loading, error, data } = useQuery(GET_BOOK_BY_ID, {
+    variables: { id: bookId },
   });
 
   let title: string = "";

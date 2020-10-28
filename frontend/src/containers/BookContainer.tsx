@@ -11,6 +11,7 @@ import { GET_BOOKS_BY_SEARCH } from "../assets/bookHandling";
  * @var bookPage is used to know which page of books the user is currently seeing.
  * @var phonePage is used to decide if the book-container should be shown.
  * @var search is the string used to search for authors or books.
+ * @var filters is a list containing the current filers being used.
  */
 
 export const BookContainer = () => {
@@ -18,9 +19,16 @@ export const BookContainer = () => {
   const bookPage: any = useSelector((state: any) => state.bookPage.bookPage);
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   const search: string = useSelector((state: any) => state.search.searchString);
+  const filters: string[] = useSelector((state: any) => state.filter.filters);
   const sortBy: string = useSelector((state: any) => state.sortBy.sortBy);
   const { loading, error, data } = useQuery(GET_BOOKS_BY_SEARCH, {
-    variables: { search: search, page: bookPage, size: 18, sortBy: sortBy },
+    variables: {
+      search: search,
+      filters: filters,
+      page: bookPage,
+      size: 18,
+      sortBy: sortBy,
+    },
   });
 
   const changeBookPageHandler = (increase: boolean) => {
