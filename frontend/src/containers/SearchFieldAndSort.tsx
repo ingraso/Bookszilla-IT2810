@@ -2,7 +2,8 @@ import React from "react";
 import SearchField from "../atoms/SearchField";
 import { MdSwapVert } from "react-icons/md";
 import "../styles/SearchField.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateSortBy } from "../redux/actions";
 
 /**
  * SearchFiledAndSort is a component that contains the searchfield and the
@@ -13,6 +14,11 @@ import { useSelector } from "react-redux";
 
 const SearchFieldAndSort = () => {
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
+  const dispatch = useDispatch();
+
+  const updateSort = (sortBy: string) => {
+    dispatch(updateSortBy(sortBy));
+  };
 
   return (
     <div id="search-field-and-sort-container" className={phonePage}>
@@ -22,10 +28,10 @@ const SearchFieldAndSort = () => {
           <MdSwapVert size="30px" />
         </button>
         <div className="dropdown-content">
-          <button className="red-button">Title (A-Z)</button>
-          <button className="red-button">Title (Z-A)</button>
-          <button className="red-button">Published (new-old)</button>
-          <button className="red-button">Published (old-new)</button>
+          <button className="red-button" onClick={() => {updateSort('title')}}>Title (A-Z)</button>
+          <button className="red-button" onClick={() => {updateSort('-title')}}>Title (Z-A)</button>
+          <button className="red-button" onClick={() => {updateSort('author')}}>Author (A-Z)</button>
+          <button className="red-button" onClick={() => {updateSort('-author')}}>Author (Z-A)</button>
         </div>
       </div>
     </div>
