@@ -43,7 +43,6 @@ function InitData({
       download: true,
       headers: false,
       step: function (row: { data: string[] }) {
-        console.log("Row:", row.data);
         createBook({
           variables: {
             title: row.data[3],
