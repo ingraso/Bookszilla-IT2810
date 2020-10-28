@@ -64,6 +64,17 @@ const getPagination = (page: number, size: number) => {
   return { limit, offset };
 };
 
+const categories: string[] = [
+  "Calendars",
+  "Comics & Graphic Novels",
+  "Humor & Entertainment",
+  "Literature & Fiction",
+  "Mystery, Thriller & Suspense",
+  "Romance",
+  "Science Fiction & Fantasy",
+  "Test Preparation",
+];
+
 //Defines a graphql type for a book
 const BookType = new GraphQLObjectType({
   name: "book",
@@ -115,23 +126,36 @@ const bookSchema = new GraphQLSchema({
         type: GraphQLList(BookType),
         args: {
           search: { type: GraphQLString },
+          filters: { type: GraphQLList(GraphQLString) },
           page: { type: GraphQLInt },
           size: { type: GraphQLInt },
           sortBy: { type: GraphQLString },
         },
         resolve: (
           root: typeof Source,
-          args: { search: string; page: number; size: number; sortBy: string; },
+          args: {
+            search: string;
+            filters: string[];
+            page: number;
+            size: number;
+            sortBy: string;
+          },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
           const { limit, offset } = getPagination(args.page, args.size);
+          const genres = args.filters.length > 0 ? args.filters : categories;
           return BookModel.find({
-            $or: [
+            $and: [
+              { genres: { $in: genres } },
               {
-                title: { $regex: args.search, $options: "i" },
+                $or: [
+                  {
+                    title: { $regex: args.search, $options: "i" },
+                  },
+                  { author: { $regex: args.search, $options: "i" } },
+                ],
               },
-              { author: { $regex: args.search, $options: "i" } },
             ],
           })
             .skip(offset)

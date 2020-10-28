@@ -4,6 +4,8 @@ export const UPDATE_PHONE_PAGE = "UPDATE_PHONE_PAGE";
 export const UPDATE_BOOK_PAGE = "UPDATE_BOOK_PAGE";
 export const CHANGE_SEARCH = "CHANGE_SEARCH";
 export const UPDATE_SORT_BY = "UPDATE_SORT_BY";
+export const ADD_FILTER = "ADD_FILTER";
+export const REMOVE_FILTER = "REMOVE_FILTER";
 
 export const changeDetailedBook = (id: string) => ({
   type: UPDATE_DETAILED_BOOK_ID,
@@ -33,4 +35,14 @@ export const changeSearch = (searchString: string) => ({
 export const updateSortBy = (sortBy: string) => ({
   type: UPDATE_SORT_BY,
   sortBy,
+});
+
+export const addFilter = (filter: string) => ({
+  type: ADD_FILTER,
+  filter,
+});
+
+export const removeFilter = (filter: string) => ({
+  type: REMOVE_FILTER,
+  filter,
 });

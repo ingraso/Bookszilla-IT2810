@@ -5,6 +5,7 @@ import phonePageReducer from "./phonePage";
 import bookPageReducer from "./bookPageReducer";
 import searchReducer from "./searchReducer";
 import sortByReducer from "./sortByReducer";
+import filterReducer from "./filterReducer";
 
 const rootReducer = combineReducers<any>({
   phonePage: phonePageReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers<any>({
   bookPage: bookPageReducer,
   search: searchReducer,
   sortBy: sortByReducer,
+  filter: filterReducer,
 });
 
 export default rootReducer;
