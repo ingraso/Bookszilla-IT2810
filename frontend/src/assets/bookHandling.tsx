@@ -1,7 +1,4 @@
-import React from "react";
-import { graphql } from "react-apollo";
-//import { gql } from "apollo-boost";
-import { gql, useQuery } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 interface Book {
   title: string;
@@ -11,13 +8,13 @@ interface Book {
 }
 
 export const GET_ALL_BOOKS = gql`
-  {
-   books{
-     id
-     title
-     author
-     genres
-     image
-   }
+  query Books($page: Int, $size: Int) {
+    books(page: $page, size: $size) {
+      id
+      title
+      author
+      genres
+      image
+    }
   }
 `;
