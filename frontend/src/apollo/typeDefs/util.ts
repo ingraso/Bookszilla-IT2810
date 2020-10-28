@@ -55,3 +55,5 @@ module.exports = {
   encryptPassword,
   comparePassword,
 };
+
+export {};

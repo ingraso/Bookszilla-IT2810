@@ -9,3 +9,5 @@ const userType = gql`
 `;
 
 module.exports = { userType };
+
+export {};

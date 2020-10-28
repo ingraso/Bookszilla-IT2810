@@ -2,7 +2,7 @@
 // https://medium.com/@tharun267/authentication-and-authorization-using-node-js-717d94ecc84d
 
 const { AuthenticationError } = require("apollo-server");
-
+/*
 const userResolvers = {
   Query: {
     me: (parent: any, args: any, context: any, info: any) => {
@@ -53,5 +53,5 @@ const userResolvers = {
 module.exports = {
   userResolvers,
 };
-
+*/
 export {};
