@@ -117,10 +117,11 @@ const bookSchema = new GraphQLSchema({
           search: { type: GraphQLString },
           page: { type: GraphQLInt },
           size: { type: GraphQLInt },
+          sortBy: { type: GraphQLString },
         },
         resolve: (
           root: typeof Source,
-          args: { search: string; page: number; size: number },
+          args: { search: string; page: number; size: number; sortBy: string; },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
@@ -134,7 +135,7 @@ const bookSchema = new GraphQLSchema({
             ],
           })
             .skip(offset)
-            .limit(limit);
+            .limit(limit).sort(args.sortBy);
         },
       },
     },
