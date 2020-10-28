@@ -7,6 +7,10 @@ import { MdSearch } from "react-icons/md";
  */
 
 const SearchField = () => {
+  const updateSearch = () => {
+    //TODO: update redux
+  }
+
   return (
     <div id="search">
       <input
@@ -14,7 +18,7 @@ const SearchField = () => {
         id="search-bar"
         placeholder="Search for your favorite book"
       />
-      <button className="red-button" id="search-button">
+      <button className="red-button" id="search-button" onClick={updateSearch}>
         <MdSearch size="30px" />
       </button>
     </div>

@@ -44,8 +44,8 @@ export const GET_ALL_BOOKS = gql`
 `;
 
 export const GET_BOOKS_BY_SEARCH = gql`
-  query BooksBySearch($search: String, $page:Int, $size:Int) {
-    booksBySearch(search: $search, page:$page, size:$size){
+  query BooksBySearch($search:String, $page:Int, $size:Int) {
+    booksBySearch(search:$search, page:$page, size:$size){
      id
      title
      author
