@@ -23,7 +23,6 @@ const cors = require("cors");
 const app = Express();
 app.use(cors(3002));
 
-
 //Connects to the database, authenticating with a user that has read and write privileges
 mongoose
   .connect("mongodb://rwUser:bookPenc1l@it2810-20.idi.ntnu.no:27017/searchDB", {
@@ -65,6 +64,17 @@ const getPagination = (page: number, size: number) => {
   return { limit, offset };
 };
 
+const categories: string[] = [
+  "Calendars",
+  "Comics & Graphic Novels",
+  "Humor & Entertainment",
+  "Literature & Fiction",
+  "Mystery, Thriller & Suspense",
+  "Romance",
+  "Science Fiction & Fantasy",
+  "Test Preparation",
+];
+
 //Defines a graphql type for a book
 const BookType = new GraphQLObjectType({
   name: "book",
@@ -85,16 +95,16 @@ const bookSchema = new GraphQLSchema({
       books: {
         type: GraphQLList(BookType),
         args: {
-          page: {type: GraphQLInt},
-          size: {type: GraphQLInt},
+          page: { type: GraphQLInt },
+          size: { type: GraphQLInt },
         },
         resolve: (
           root: typeof Source,
-          args: { page: number, size: number },
+          args: { page: number; size: number },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
-          const {limit, offset} = getPagination(args.page, args.size);
+          const { limit, offset } = getPagination(args.page, args.size);
           return BookModel.find().skip(offset).limit(limit);
         },
       },
@@ -112,21 +122,42 @@ const bookSchema = new GraphQLSchema({
           return BookModel.findById(args.id).exec();
         },
       },
-      booksByTitle: {
-        type: BookType,
+      booksBySearch: {
+        type: GraphQLList(BookType),
         args: {
-          title: { type: GraphQLString },
-          page: {type: GraphQLInt},
-          size: {type: GraphQLInt},
+          search: { type: GraphQLString },
+          filters: { type: GraphQLList(GraphQLString) },
+          page: { type: GraphQLInt },
+          size: { type: GraphQLInt },
         },
         resolve: (
           root: typeof Source,
-          args: { [p: string]: any },
+          args: {
+            search: string;
+            filters: string[];
+            page: number;
+            size: number;
+          },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
-          const {limit, offset} = getPagination(args.page, args.size);
-          return BookModel.find({ title: {"$regex": args.title , "$options": "i" } }).skip(offset).limit(limit);
+          const { limit, offset } = getPagination(args.page, args.size);
+          const genres = args.filters.length > 0 ? args.filters : categories;
+          return BookModel.find({
+            $and: [
+              { genres: { $in: genres } },
+              {
+                $or: [
+                  {
+                    title: { $regex: args.search, $options: "i" },
+                  },
+                  { author: { $regex: args.search, $options: "i" } },
+                ],
+              },
+            ],
+          })
+            .skip(offset)
+            .limit(limit);
         },
       },
     },

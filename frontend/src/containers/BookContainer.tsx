@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { Book } from "../atoms/Book";
-//import * as book_data from "../assets/book_data.json";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_ALL_BOOKS } from "../assets/bookHandling";
+import { GET_BOOKS_BY_SEARCH } from "../assets/bookHandling";
 import { useQuery } from "@apollo/client";
 import { changeBookPage } from "../redux/actions";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
@@ -17,11 +16,11 @@ export const BookContainer = () => {
   const dispatch = useDispatch();
   const bookPage: any = useSelector((state: any) => state.bookPage.bookPage);
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
-  const { loading, error, data } = useQuery(GET_ALL_BOOKS, {
-    variables: { page: bookPage, size: 18 },
+  const search: string = ""; //TODO: update search to match redux from search field
+  const filters: string[] = []; //TODO: update filters to match redux
+  const { loading, error, data } = useQuery(GET_BOOKS_BY_SEARCH, {
+    variables: { search: search, filters: filters, page: bookPage, size: 18 },
   });
-  console.log(loading, error);
-  console.log("Data: ", data);
 
   const changeBookPageHandler = (increase: boolean) => {
     if (bookPage > 0 || increase) {
@@ -34,7 +33,7 @@ export const BookContainer = () => {
   return (
     <>
       <div id="book-container" className={phonePage}>
-        {data?.books?.map((bookData: any) => {
+        {data?.booksBySearch?.map((bookData: any) => {
           return (
             <Book
               key={bookData.id}
