@@ -13,7 +13,7 @@ import {useQuery} from "@apollo/client";
 
 export const BookContainer = () => {
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
-  const {loading, error, data} = useQuery(GET_ALL_BOOKS);
+  const {loading, error, data} = useQuery(GET_ALL_BOOKS, {variables: {page: 0 , size: 18}});
   console.log(loading, error);
   console.log("Data: ", data);
 

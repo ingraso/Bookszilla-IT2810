@@ -32,14 +32,14 @@ export const GET_NEXT_BOOKS = gql`
 `;
 
 export const GET_ALL_BOOKS = gql`
-  {
-   books{
+  query Books($page:Int, $size:Int) {
+    books(page:$page, size:$size){
      id
      title
      author
      genres
      image
-   }
+    }
   }
 `;
 
