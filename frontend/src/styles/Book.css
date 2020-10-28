@@ -1,4 +1,6 @@
-#book-container {
+/* Styling for the books being shown and their container */
+
+#book-container:not(:last-child) {
   margin-right: calc(21vw + 10px);
   display: flex;
   flex-wrap: wrap;
@@ -31,10 +33,22 @@
   font-style: italic;
 }
 
-#book-pages-button button {
+/* Styling for the buttons to change the page of books being shown */
+#book-pages-buttons {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+#book-pages-buttons button {
   font-size: 16px;
   padding: 2px 10px;
-  height: 40px;
+  height: 34px;
+  margin: 0 10px;
+}
+
+#book-pages-buttons p {
+  padding: 0 5px;
 }
 
 @media screen and (min-width: 851px) {

@@ -19,7 +19,6 @@ const {
 } = require("graphql");
 const { Context } = require("vm");
 const cors = require("cors");
-const mongoosePaginate = require("mongoose-paginate-v2");
 
 const app = Express();
 app.use(cors(3002));

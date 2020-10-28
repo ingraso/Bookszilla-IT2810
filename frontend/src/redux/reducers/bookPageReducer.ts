@@ -11,12 +11,12 @@ const bookPageReducer = (state = initialState, action: Actions) => {
     if (action.increase) {
       return {
         ...state,
-        bookPage: state.bookPage+1,
+        bookPage: state.bookPage + 1,
       };
     } else {
       return {
         ...state,
-        bookPage: state.bookPage-1,
+        bookPage: state.bookPage - 1,
       };
     }
   }
