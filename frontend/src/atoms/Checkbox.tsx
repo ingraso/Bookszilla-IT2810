@@ -24,10 +24,8 @@ const Checkbox = (props: CheckboxProps) => {
   const toggleCheck = () => {
     changeChecked(!checked);
     if (filters.includes(props.text)) {
-      console.log("er i if")
       dispatch(removeFilter(props.text));
     } else {
-      console.log("er i else")
       dispatch(addFilter(props.text));
     }
   };
