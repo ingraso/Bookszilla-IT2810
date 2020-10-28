@@ -23,7 +23,6 @@ const cors = require("cors");
 const app = Express();
 app.use(cors(3002));
 
-
 //Connects to the database, authenticating with a user that has read and write privileges
 mongoose
   .connect("mongodb://rwUser:bookPenc1l@it2810-20.idi.ntnu.no:27017/searchDB", {
@@ -85,16 +84,16 @@ const bookSchema = new GraphQLSchema({
       books: {
         type: GraphQLList(BookType),
         args: {
-          page: {type: GraphQLInt},
-          size: {type: GraphQLInt},
+          page: { type: GraphQLInt },
+          size: { type: GraphQLInt },
         },
         resolve: (
           root: typeof Source,
-          args: { page: number, size: number },
+          args: { page: number; size: number },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
-          const {limit, offset} = getPagination(args.page, args.size);
+          const { limit, offset } = getPagination(args.page, args.size);
           return BookModel.find().skip(offset).limit(limit);
         },
       },
@@ -112,21 +111,30 @@ const bookSchema = new GraphQLSchema({
           return BookModel.findById(args.id).exec();
         },
       },
-      booksByTitle: {
-        type: BookType,
+      booksBySearch: {
+        type: GraphQLList(BookType),
         args: {
-          title: { type: GraphQLString },
-          page: {type: GraphQLInt},
-          size: {type: GraphQLInt},
+          search: { type: GraphQLString },
+          page: { type: GraphQLInt },
+          size: { type: GraphQLInt },
         },
         resolve: (
           root: typeof Source,
-          args: { [p: string]: any },
+          args: { search: string; page: number; size: number },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
-          const {limit, offset} = getPagination(args.page, args.size);
-          return BookModel.find({ title: {"$regex": args.title , "$options": "i" } }).skip(offset).limit(limit);
+          const { limit, offset } = getPagination(args.page, args.size);
+          return BookModel.find({
+            $or: [
+              {
+                title: { $regex: args.search, $options: "i" },
+              },
+              { author: { $regex: args.search, $options: "i" } },
+            ],
+          })
+            .skip(offset)
+            .limit(limit);
         },
       },
     },
