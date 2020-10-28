@@ -3,6 +3,8 @@ import { MdClose } from "react-icons/md";
 import store from "../redux/store";
 import { useSelector } from "react-redux";
 import "../styles/BookDetails.css";
+import { useQuery } from "@apollo/client";
+import { GET_BOOK_BY_ID } from "../assets/bookHandling";
 
 /**
  * BookDetail is a component that will show the details of a chosen book.
@@ -16,13 +18,24 @@ const BookDetails = () => {
   );
 
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
-  console.log(phonePage)
 
-  // remember to remove this after retrieving data from db
-  let title: string = "The Spice Shelf Girls";
-  let author: string = "Xu Wang";
-  let cover: string = "../../sunset.jpg";
-  let genres: Array<string> = ["Drama", "Documentary"];
+  const bookId: any = useSelector((state: any) => state.id.id);
+
+  const {loading, error, data} = useQuery(GET_BOOK_BY_ID, {
+    variables: {id: bookId},
+  });
+
+  let title: string = "";
+  let author: string = "";
+  let cover: string = "";
+  let genres: Array<string> = [""];
+
+  if (data) {
+    title = data?.bookById?.title;
+    author = data?.bookById?.author;
+    cover = data?.bookById?.image;
+    genres = data?.bookById?.genres;
+  }
 
   // should only subscribe to changes in detailedBookId - because
   // now I think it will display a book on other changes in the store as well
@@ -34,10 +47,6 @@ const BookDetails = () => {
 
   const displayDetailedView = () => {
     setBookDetailsClassName("opened-book");
-
-    // if id !== 0 => get data for book with id 'props.id' and display this
-
-    console.log(store.getState().id); // to show that another book cover is clicked
   };
 
   const notImplemented = () => {

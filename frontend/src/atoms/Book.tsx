@@ -4,7 +4,7 @@ import { changeDetailedBook, changePhonePage } from "../redux/actions";
 import "../styles/Book.css";
 
 interface BookProps {
-  id: number;
+  id: string;
   title: string;
   author: string;
   cover: string;
@@ -18,12 +18,12 @@ interface BookProps {
 export const Book = (props: BookProps) => {
   const dispatch = useDispatch();
 
-  const handleBookClick = (id: number) => {
+  const handleBookClick = (id: string) => {
     updateDetailedBook(id);
     dispatch(changePhonePage("book"));
   };
 
-  const updateDetailedBook = (id: number) => {
+  const updateDetailedBook = (id: string) => {
     dispatch(changeDetailedBook(id));
   };
 
