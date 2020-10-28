@@ -4,7 +4,7 @@ export const UPDATE_PHONE_PAGE = "UPDATE_PHONE_PAGE";
 export const UPDATE_BOOK_PAGE = "UPDATE_BOOK_PAGE";
 export const CHANGE_SEARCH = "CHANGE_SEARCH";
 
-export const changeDetailedBook = (id: number) => ({
+export const changeDetailedBook = (id: string) => ({
   type: UPDATE_DETAILED_BOOK_ID,
   id,
 });
