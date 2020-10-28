@@ -14,10 +14,12 @@ const {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLResolveInfo,
+  GraphQLInt,
   Source,
 } = require("graphql");
 const { Context } = require("vm");
 const cors = require("cors");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const app = Express();
 app.use(cors(3002));
@@ -57,6 +59,13 @@ const BookSchema: typeof Schema = new Schema({
 // @ts-ignore
 const BookModel: typeof model = mongoose.model<Book>("book", BookSchema);
 
+const getPagination = (page: number, size: number) => {
+  const limit = size ? +size : 18;
+  const offset = page ? page * limit : 0;
+
+  return { limit, offset };
+};
+
 //Defines a graphql type for a book
 const BookType = new GraphQLObjectType({
   name: "book",
@@ -76,13 +85,18 @@ const bookSchema = new GraphQLSchema({
     fields: {
       books: {
         type: GraphQLList(BookType),
+        args: {
+          page: {type: GraphQLInt},
+          size: {type: GraphQLInt},
+        },
         resolve: (
           root: typeof Source,
-          args: any,
+          args: { page: number, size: number },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
-          return BookModel.find().exec();
+          const {limit, offset} = getPagination(args.page, args.size);
+          return BookModel.find().skip(offset).limit(limit);
         },
       },
       bookById: {
@@ -99,10 +113,12 @@ const bookSchema = new GraphQLSchema({
           return BookModel.findById(args.id).exec();
         },
       },
-      bookByTitle: {
+      booksByTitle: {
         type: BookType,
         args: {
           title: { type: GraphQLString },
+          page: {type: GraphQLInt},
+          size: {type: GraphQLInt},
         },
         resolve: (
           root: typeof Source,
@@ -110,7 +126,8 @@ const bookSchema = new GraphQLSchema({
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
-          return BookModel.find({ title: args.title }).exec();
+          const {limit, offset} = getPagination(args.page, args.size);
+          return BookModel.find({ title: {"$regex": args.title , "$options": "i" } }).skip(offset).limit(limit);
         },
       },
     },
