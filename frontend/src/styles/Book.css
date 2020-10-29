@@ -1,7 +1,11 @@
 /* Styling for the books being shown and their container */
 
+#book-container {
+  margin-right: calc(21vw);
+}
+
 #book-container:not(:last-child) {
-  margin-right: calc(21vw + 10px);
+  margin-right: calc(21vw - 50px);
   display: flex;
   flex-wrap: wrap;
   background-color: #ffffff;
