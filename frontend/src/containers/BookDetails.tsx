@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdClose } from "react-icons/md";
-import store from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { changeDetailedBook } from "../redux/actions";
 import "../styles/BookDetails.css";
