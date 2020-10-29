@@ -21,7 +21,7 @@ export const BookContainer = () => {
   const search: string = useSelector((state: any) => state.search.searchString);
   const filters: string[] = useSelector((state: any) => state.filter.filters);
   const sortBy: string = useSelector((state: any) => state.sortBy.sortBy);
-  const { loading, error, data } = useQuery(GET_BOOKS_BY_SEARCH, {
+  const { data } = useQuery(GET_BOOKS_BY_SEARCH, {
     variables: {
       search: search,
       filters: filters,

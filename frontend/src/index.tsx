@@ -16,13 +16,16 @@ const client = new ApolloClient({
 let initializeData: boolean = false;
 const falseInitializeData = () => {
   initializeData = false;
-}
+};
 
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
       <React.StrictMode>
-        <InitData initializeData={initializeData} falseInitializeData={falseInitializeData}/>
+        <InitData
+          initializeData={initializeData}
+          falseInitializeData={falseInitializeData}
+        />
         <App />
       </React.StrictMode>
     </Provider>
