@@ -9,7 +9,7 @@ interface UserFormProps {
   toggleForm: () => void;
 }
 
-const API_URL = "http://localhost:3002/auth/";
+const API_URL = "http://localhost:3001/auth/";
 
 const UserForm = (props: UserFormProps) => {
   const [username, setUsername] = useState<string>("");
