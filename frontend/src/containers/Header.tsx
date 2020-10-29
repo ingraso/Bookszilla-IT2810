@@ -42,9 +42,9 @@ const Header = ({ changePage }: HeaderProps) => {
 
   return (
     <header>
-      <button id="title-button" onClick={() => changePage("main-page")}>
-        <h3 id="title">[SETT INN EN GOD TITTEL HER]</h3>
-      </button>
+      <h1 id="title" onClick={() => changePage("main-page")}>
+        Bookszilla
+      </h1>
       <div className="header-right">
         {loginStatus ? (
           <button id="profile" onClick={() => changePage("profile-page")}>
