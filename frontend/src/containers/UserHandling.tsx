@@ -10,7 +10,7 @@ const UserHandling = () => {
     <div id="userHandling">
       {displayRegisterForm ? (
         <>
-          <UserForm isLoginForm={false} />
+          <UserForm isLoginForm={false} toggleForm={() => {}} />
           Already got a user? Sign in below!
           <button
             id="userHandlingLogin"
@@ -22,7 +22,7 @@ const UserHandling = () => {
         </>
       ) : (
         <>
-          <UserForm isLoginForm={true} />
+          <UserForm isLoginForm={true} toggleForm={() => {}} />
           Don't have a user? Create one!
           <button
             id="userHandlingRegister"

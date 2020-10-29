@@ -378,9 +378,9 @@ app.use(
 );
 
 app.use(Express.json()); // for body parser
-app.use("/test/user", router);
+app.use("/auth/", router);
 
-app.use("/test/token", verifyToken, router);
+app.use("/private/token", verifyToken, router);
 
 //Listens for API calls
 app.listen(3002, () => {
