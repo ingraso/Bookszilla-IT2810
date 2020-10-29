@@ -286,22 +286,19 @@ const userSchema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: "Queries",
     fields: {
-      readAndWantedBooks: {
+      userInfo: {
         type: UserType,
         args: {
-          page: { type: GraphQLInt },
-          size: { type: GraphQLInt },
           token: { type: GraphQLString },
         },
         resolve: (
           root: typeof Source,
-          args: { page: number; size: number; token: string },
+          args: { token: string },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
-          const { limit, offset } = getPagination(args.page, args.size);
           const user = jwt.verify(args.token, process.env.TOKEN_SECRET);
-          return UserModel.findById(user._id).skip(offset).limit(limit);
+          return UserModel.findById(user.id);
         },
       },
     },
