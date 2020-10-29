@@ -49,7 +49,7 @@ const BookDetails = () => {
     return (
       <div
         id="book-details"
-        className={/*bookDetailsClassName + " " + */ phonePage}
+        className={phonePage}
       >
         <button
           id="close-book-details"
