@@ -13,7 +13,7 @@ header {
 #title {
   font-size: 30px;
   font-weight: bold;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
 }
 
@@ -36,9 +36,5 @@ header {
 @media screen and (max-width: 850px) {
   .header-right {
     display: none;
-  }
-
-  #title {
-    margin: 0;
   }
 }

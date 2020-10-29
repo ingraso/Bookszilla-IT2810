@@ -57,7 +57,7 @@ const BookDetails = () => {
         </button>
         <img src={cover} alt={"Book cover for" + title} />
         <p className="title">Title: {title}</p>
-        <p className="author">Author: {author}</p>
+        <p className="author">Author: {author ? author : "Unknown"}</p>
         <p className="genre">
           Genres:
           {genres.map((genre) => {
