@@ -19,6 +19,11 @@ const {
 } = require("graphql");
 const { Context } = require("vm");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = Express();
 app.use(cors(3002));
@@ -159,7 +164,8 @@ const bookSchema = new GraphQLSchema({
             ],
           })
             .skip(offset)
-            .limit(limit).sort(args.sortBy);
+            .limit(limit)
+            .sort(args.sortBy);
         },
       },
     },
@@ -189,6 +195,76 @@ const bookSchema = new GraphQLSchema({
   }),
 });
 
+// Users
+interface User extends Document {
+  username: string;
+  password: string;
+}
+
+const UserSchema: typeof Schema = new Schema({
+  username: String,
+  password: String,
+});
+
+// @ts-ignore
+const UserModel: typeof model = mongoose.model<User>("user", UserSchema);
+
+const router = require("express").Router();
+
+router.post("/register", async (req: any, res: any) => {
+  // Allow only unique usernames
+  const isUsernameExist = await UserModel.findOne({
+    username: req.body.username,
+  });
+  if (isUsernameExist) {
+    return res.status(400).json({ error: "Username already exists. " });
+  }
+
+  // Encrypt(hash) the password
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(req.body.password, salt);
+
+  const user = new UserModel({
+    username: req.body.username,
+    password,
+  });
+
+  try {
+    const savedUser = await user.save();
+    res.json({ error: null, data: { userId: savedUser._id } });
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+});
+
+router.post("/login", async (req: any, res: any) => {
+  // Check if username exists
+  const user = await UserModel.findOne({ username: req.body.username });
+  if (!user) {
+    return res.status(400).json({ error: "Username is wrong " });
+  }
+
+  // Check if password is correct
+  const validPassword = await bcrypt.compare(req.body.password, user.password);
+  if (!validPassword) {
+    return res.status(400).json({ error: "Password is wrong" });
+  }
+
+  // Create token
+  const token = jwt.sign(
+    {
+      username: user.username,
+      id: user._id,
+    },
+    process.env.TOKEN_SECRET
+  );
+
+  res.header("auth-token", token).json({
+    error: null,
+    data: { token },
+  });
+});
+
 //Starts up the express app with the aforementioned graphql schema
 app.use(
   "/book",
@@ -197,6 +273,9 @@ app.use(
     graphiql: true, //This makes manual testing of the different queries and mutations easier
   })
 );
+
+app.use(Express.json()); // for body parser
+app.use("/auth/", router);
 
 //Listens for API calls
 app.listen(3002, () => {

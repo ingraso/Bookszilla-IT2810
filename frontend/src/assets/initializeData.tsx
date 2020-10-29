@@ -30,10 +30,9 @@ function InitData({
   initializeData: boolean;
   falseInitializeData: any;
 }) {
-  const [createBook, { data }] = useMutation(CREATE_BOOK);
+  const [createBook] = useMutation(CREATE_BOOK);
   if (initializeData) {
     console.log("Initializing data");
-    const results: any[] = [];
 
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url =
@@ -59,9 +58,7 @@ function InitData({
     falseInitializeData();
   }
 
-  return (
-    <div/>
-  );
-};
+  return <div />;
+}
 
 export default InitData;

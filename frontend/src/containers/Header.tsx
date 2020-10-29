@@ -71,17 +71,14 @@ const Header = ({ changePage }: HeaderProps) => {
         {displayRegisterForm ? (
           <div id="popup">
             <div id="popup-content">
-              <UserForm
-                isLoginForm={false}
-                toggleRegisterForm={toggleRegisterForm}
-              />
+              <UserForm isLoginForm={false} toggleForm={toggleRegisterForm} />
             </div>
           </div>
         ) : null}
         {displayLoginForm ? (
           <div id="popup">
             <div id="popup-content">
-              <UserForm isLoginForm={true} toggleLoginForm={toggleLoginForm} />
+              <UserForm isLoginForm={true} toggleForm={toggleLoginForm} />
             </div>
           </div>
         ) : null}
