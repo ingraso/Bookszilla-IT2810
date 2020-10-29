@@ -164,7 +164,8 @@ const bookSchema = new GraphQLSchema({
             ],
           })
             .skip(offset)
-            .limit(limit).sort(args.sortBy);
+            .limit(limit)
+            .sort(args.sortBy);
         },
       },
     },
@@ -194,6 +195,7 @@ const bookSchema = new GraphQLSchema({
   }),
 });
 
+// Users
 interface User extends Document {
   username: string;
   password: string;
@@ -206,6 +208,7 @@ const UserSchema: typeof Schema = new Schema({
 
 // @ts-ignore
 const UserModel: typeof model = mongoose.model<User>("user", UserSchema);
+
 const router = require("express").Router();
 
 router.post("/register", async (req: any, res: any) => {
@@ -213,7 +216,6 @@ router.post("/register", async (req: any, res: any) => {
   const isUsernameExist = await UserModel.findOne({
     username: req.body.username,
   });
-
   if (isUsernameExist) {
     return res.status(400).json({ error: "Username already exists. " });
   }
@@ -263,103 +265,6 @@ router.post("/login", async (req: any, res: any) => {
   });
 });
 
-const verifyToken = (req: any, res: any, next: any) => {
-  const token = req.header("auth-token");
-  if (!token) return res.status(401).json({ error: "Access denied" });
-
-  try {
-    const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-    req.user = verified;
-    next(); // to continue the flow
-  } catch (err) {
-    res.status(400).json({ err: "Token is not valid" });
-  }
-};
-
-// route that only verified users can access
-router.get("/", (req: any, res: any) => {
-  res.json({
-    error: null,
-    data: {
-      title: "My dashboard",
-      content: "dashboard content",
-      user: req.user,
-    },
-  });
-});
-
-const UserType = new GraphQLObjectType({
-  name: "user",
-  fields: {
-    id: { type: GraphQLID },
-    username: { type: GraphQLString },
-    password: { type: GraphQLString },
-  },
-});
-
-const userSchema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: "Queries",
-    fields: {
-      users: {
-        type: GraphQLList(UserType),
-        resolve: () => {
-          return UserModel.find().exec();
-        },
-      },
-      userById: {
-        type: UserType,
-        args: {
-          id: { type: GraphQLNonNull(GraphQLID) },
-        },
-        resolve: (
-          root: typeof Source,
-          args: { [p: string]: any },
-          context: typeof Context,
-          info: typeof GraphQLResolveInfo
-        ) => {
-          return UserModel.findById(args.id).exec();
-        },
-      },
-      userByUsername: {
-        type: UserType,
-        args: {
-          username: { type: GraphQLString },
-        },
-        resolve: (
-          root: typeof Source,
-          args: { [p: string]: any },
-          context: typeof Context,
-          info: typeof GraphQLResolveInfo
-        ) => {
-          return UserModel.find({ username: args.username }).exec();
-        },
-      },
-    },
-  }),
-  mutation: new GraphQLObjectType({
-    name: "CreateUser",
-    fields: {
-      users: {
-        type: UserType,
-        args: {
-          username: { type: GraphQLString },
-          password: { type: GraphQLString },
-        },
-        resolve: (
-          root: typeof Source,
-          args: { [p: string]: any },
-          context: typeof Context,
-          info: typeof GraphQLResolveInfo
-        ) => {
-          let users = new UserModel(args);
-          return users.save();
-        },
-      },
-    },
-  }),
-});
-
 //Starts up the express app with the aforementioned graphql schema
 app.use(
   "/book",
@@ -369,18 +274,8 @@ app.use(
   })
 );
 
-app.use(
-  "/user",
-  graphqlHTTP({
-    schema: userSchema,
-    graphiql: true, //This makes manual testing of the different queries and mutations easier
-  })
-);
-
 app.use(Express.json()); // for body parser
 app.use("/auth/", router);
-
-app.use("/private/token", verifyToken, router);
 
 //Listens for API calls
 app.listen(3002, () => {
