@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { changeBookPage } from "../redux/actions";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
-import { GET_BOOKS_BY_SEARCH } from "../assets/bookHandling";
+import { GET_BOOKS_BY_SEARCH } from "../assets/queries";
 
 /**
  * BookContainer is a component that displays all books, and lets you move between pages.

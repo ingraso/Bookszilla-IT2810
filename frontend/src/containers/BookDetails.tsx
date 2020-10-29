@@ -4,7 +4,7 @@ import store from "../redux/store";
 import { useSelector } from "react-redux";
 import "../styles/BookDetails.css";
 import { useQuery } from "@apollo/client";
-import { GET_BOOK_BY_ID } from "../assets/bookHandling";
+import { GET_BOOK_BY_ID } from "../assets/queries";
 
 /**
  * BookDetail is a component that will show the details of a chosen book.

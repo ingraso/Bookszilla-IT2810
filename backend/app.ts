@@ -97,20 +97,23 @@ const bookSchema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: "Queries",
     fields: {
-      books: {
+      booksByIds: {
         type: GraphQLList(BookType),
         args: {
           page: { type: GraphQLInt },
           size: { type: GraphQLInt },
+          ids: { type: GraphQLList(GraphQLID) },
         },
         resolve: (
           root: typeof Source,
-          args: { page: number; size: number },
+          args: { page: number; size: number; ids: string[] },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
           const { limit, offset } = getPagination(args.page, args.size);
-          return BookModel.find().skip(offset).limit(limit);
+          return BookModel.find({ _id: { $in: args.ids } })
+            .skip(offset)
+            .limit(limit);
         },
       },
       bookById: {
@@ -201,6 +204,7 @@ interface User extends Document {
   password: string;
   read: string[];
   wanted: string[];
+  fav: string[];
 }
 
 const UserSchema: typeof Schema = new Schema({
@@ -208,6 +212,7 @@ const UserSchema: typeof Schema = new Schema({
   password: String,
   read: [String],
   wanted: [String],
+  fav: [String],
 });
 
 // @ts-ignore
@@ -233,6 +238,7 @@ router.post("/register", async (req: any, res: any) => {
     password,
     read: [],
     wanted: [],
+    fav: [],
   });
 
   try {
@@ -278,6 +284,7 @@ const UserType = new GraphQLObjectType({
     id: { type: GraphQLID },
     read: { type: GraphQLList(GraphQLString) },
     wanted: { type: GraphQLList(GraphQLString) },
+    fav: { type: GraphQLList(GraphQLString) },
   },
 });
 
@@ -311,18 +318,30 @@ const userSchema = new GraphQLSchema({
         args: {
           readList: { type: GraphQLList(GraphQLString) },
           wantedList: { type: GraphQLList(GraphQLString) },
+          favList: { type: GraphQLList(GraphQLString) },
           token: { type: GraphQLString },
         },
         resolve: async function (
           root: typeof Source,
-          args: { readList: string[]; wantedList: string[]; token: string },
+          args: {
+            readList: string[];
+            wantedList: string[];
+            favList: string[];
+            token: string;
+          },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) {
           const user = jwt.verify(args.token, process.env.TOKEN_SECRET);
           const updatedUser = await UserModel.findByIdAndUpdate(
             user.id,
-            { $set: { read: args.readList, wanted: args.wantedList } },
+            {
+              $set: {
+                read: args.readList,
+                wanted: args.wantedList,
+                fav: args.favList,
+              },
+            },
             { useFindAndModify: false, new: true }
           );
           if (!updatedUser) {
