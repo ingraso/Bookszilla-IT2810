@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 import store from "./redux/store";
 import * as serviceWorker from "./serviceWorker";
-import {ApolloClient, InMemoryCache, ApolloProvider} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import InitData from "./assets/initializeData";
 
 const BASE_URL = "http://localhost:3001/";

@@ -201,6 +201,14 @@ const bookSchema = new GraphQLSchema({
 });
 
 // Users
+/**
+ * Functionality to register, authenticate, read and update users
+ * @var username: the username of the user
+ * @var password: the user's encrypted password
+ * @var read: the list of books the user has read
+ * @var wanted: the list of books the user wants to read
+ * @var fav: the list of books the user has marked as favourite
+ */
 interface User extends Document {
   username: string;
   password: string;

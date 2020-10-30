@@ -2,13 +2,14 @@ import React from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { GET_USER_INFO, UPDATE_USERS_BOOK_LISTS } from "../assets/queries";
 import { USER_URL } from "../index";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 /**
  * Returns buttons, that adds the current displayed book to the correct
  * user list.
  * @var bookId is the id of the book currently being displayed.
  * @var token is the current users jwt token.
+ * @var data is the data received when calling the getUser query.
  */
 
 const BookListButtons = () => {
@@ -21,9 +22,16 @@ const BookListButtons = () => {
     context: { uri: USER_URL },
   });
 
+  /**
+   * Adds the current displayed book to the correct list
+   * @param list is a string that describes which list of books to update
+   * @var read is the list of books the user has read.
+   * @var wanted is the list of books the user wants to read.
+   * @var fav is the list of books the user har marked as favourite.
+   */
   const addToUserList = (list: string) => {
     getUser({ variables: { token: token } });
-    if(data) {
+    if (data) {
       switch (list) {
         case "read":
           updateUser({

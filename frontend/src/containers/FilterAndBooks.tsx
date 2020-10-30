@@ -34,7 +34,7 @@ const FilterAndBooks = () => {
   return (
     <div id="flex-container">
       <FilterMenu />
-      <BookContainer bookData={data?.booksBySearch} id="book-pages-buttons" />
+      <BookContainer bookData={data?.booksBySearch} id="main-page-book-container" />
     </div>
   );
 };
