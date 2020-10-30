@@ -31,11 +31,7 @@ const BookListButtons = () => {
    */
   const addToUserList = (list: string) => {
     getUser({ variables: { token: token } });
-    console.log("Data: ", data);
-    console.log("token: ", token);
-    console.log("bookId: ", bookId);
     if (data) {
-      console.log("test");
       switch (list) {
         case "read":
           updateUser({
@@ -72,7 +68,6 @@ const BookListButtons = () => {
       }
     }
     getUser({ variables: { token: token } });
-    console.log("After mutation: ", data);
   };
 
   return (
