@@ -15,6 +15,7 @@
 .single-book {
   display: inline-block;
   width: 200px;
+  height: 275px;
   margin: 5px;
   padding: 10px;
   text-align: center;
@@ -51,7 +52,7 @@
   margin: 0 10px;
 }
 
-#book-pages-buttons p {
+#book-pages-buttons h3 {
   padding: 0 5px;
 }
 
@@ -62,6 +63,11 @@
 }
 
 @media only screen and (max-width: 850px) {
+  .single-book {
+    height: 250px;
+    min-width: 110px;
+  }
+
   .single-book img {
     width: 100px;
     height: 150px;
