@@ -28,7 +28,11 @@ export const BookContainer = (props: { bookData: any; id: string }) => {
 
   return (
     <div id={props.id}>
-      <div id="book-container" className={phonePage}>
+      <div
+        id="book-container"
+        className={phonePage}
+        data-testid="book-container"
+      >
         {props.bookData?.map((bookData: any) => {
           return (
             <Book
