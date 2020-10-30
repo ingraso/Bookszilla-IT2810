@@ -26,7 +26,7 @@ describe("Register form", () => {
       .should("have.value", "myPassword");
   });
 
-  it("Password and confirm password not corresponding should respond in unsuccessful register", () => {
+  it("Password and confirm password not corresponding should result in unsuccessful register", () => {
     cy.visit("/");
 
     cy.get("#register-button").click();
@@ -45,7 +45,7 @@ describe("Register form", () => {
     );
   });
 
-  it("Not filling in all fields responds in unsuccessful register", () => {
+  it("Not filling in all fields should result in unsuccessful register", () => {
     cy.visit("/");
 
     cy.get("#register-button").click();

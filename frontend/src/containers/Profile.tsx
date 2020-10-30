@@ -71,7 +71,7 @@ const Profile = () => {
           </button>
           <div id="info-on-top-container">
             <MdAccountCircle size="70px" />
-            <h4>Username:</h4>
+            <h4>Username: {username}</h4>
             <button
               id="favorites"
               className={showing + " red-button profile-view-button"}

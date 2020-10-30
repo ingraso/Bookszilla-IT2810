@@ -45,7 +45,7 @@ describe("Login form", () => {
     cy.get("#sign-out-button").click();
   });
 
-  it("Wrong username or password should respond in unsuccessful sign in", () => {
+  it("Wrong username or password should result in unsuccessful sign in", () => {
     cy.visit("/");
 
     cy.get("#sign-in-button").click();
