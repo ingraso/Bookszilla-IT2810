@@ -14,7 +14,7 @@
   width: 30%;
   margin: auto;
   background: white;
-  padding: 10px;
+  padding: 20px;
   position: absolute;
   top: 70px;
   right: 5%;
@@ -46,7 +46,7 @@ input[type="password"] {
   margin: 10px 10px 10px 0;
 }
 
-#popup input[type="submit"],
+#user-submit,
 #userHandling input[type="submit"] {
   margin: 10px;
   padding: 10px;
@@ -54,7 +54,7 @@ input[type="password"] {
   border: none;
 }
 
-#popup input[type="submit"]:hover,
+#user-submit:hover,
 #userHandling input[type="submit"]:hover {
   cursor: pointer;
 }
