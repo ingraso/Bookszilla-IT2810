@@ -36,7 +36,7 @@ const BookListButtons = () => {
         case "read":
           updateUser({
             variables: {
-              readList: [data?.userInfo?.read, bookId],
+              readList: [...data?.userInfo?.read, bookId],
               wantedList: data?.userInfo?.wanted,
               favList: data?.userInfo?.fav,
               token: token,
@@ -67,6 +67,7 @@ const BookListButtons = () => {
           break;
       }
     }
+    getUser({ variables: { token: token } });
   };
 
   return (
