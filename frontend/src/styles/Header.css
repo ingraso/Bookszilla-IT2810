@@ -10,24 +10,15 @@ header {
   border-bottom: 1px solid #ccc;
 }
 
-/* Styling for the title */
-#title-button {
-  background-color: white;
-  padding: none;
-  margin: none;
-}
-
 #title {
-  font-size: 18px;
+  font-size: 30px;
   font-weight: bold;
   margin: 0;
   padding: 0;
 }
 
-/* Styling for the other buttons in the header */
-.header-right {
-  display: block;
-  float: right;
+#title:hover {
+  cursor: pointer;
 }
 
 .header-right button {

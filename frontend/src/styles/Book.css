@@ -1,19 +1,22 @@
 /* Styling for the books being shown and their container */
+#book-container {
+  margin-right: calc(21vw);
+}
 
-#book-container:not(:last-child) {
-  margin-right: calc(21vw + 10px);
+#book-container {
+  margin-right: calc(20vw + 20px);
   display: flex;
   flex-wrap: wrap;
   background-color: #ffffff;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .single-book {
   display: inline-block;
-  width: 200px;
+  width: 175px;
+  height: 250px;
   margin: 5px;
   padding: 10px;
-  text-align: center;
   border: 1px solid #eeeeee;
 }
 
@@ -24,8 +27,7 @@
   object-position: 45%;
 }
 
-.single-book img:hover,
-.single-book .title:hover {
+.single-book:hover {
   cursor: pointer;
 }
 
@@ -33,11 +35,22 @@
   font-style: italic;
 }
 
-/* Styling for the buttons to change the page of books being shown */
+.single-book .title,
+.single-book .author {
+  width: 150px;
+  height: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Styling for the button to change the page of books being shown */
 #book-pages-buttons {
   margin: 20px 0;
   display: flex;
+  flex-basis: 100%;
   align-items: center;
+  justify-content: center;
 }
 
 #book-pages-buttons button {
@@ -47,7 +60,7 @@
   margin: 0 10px;
 }
 
-#book-pages-buttons p {
+#book-pages-buttons h3 {
   padding: 0 5px;
 }
 
@@ -58,6 +71,11 @@
 }
 
 @media only screen and (max-width: 850px) {
+  .single-book {
+    min-width: 110px;
+    height: 200px;
+  }
+
   .single-book img {
     width: 100px;
     height: 150px;
@@ -72,7 +90,8 @@
     margin-bottom: 60px;
   }
 
-  #detailed-book-phone-info {
-    margin: 50px 20px;
+  .single-book .title,
+  .single-book .author {
+    width: 100px;
   }
 }

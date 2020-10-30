@@ -297,7 +297,7 @@ const UserType = new GraphQLObjectType({
   name: "user",
   fields: {
     id: { type: GraphQLID },
-    username: { type: GraphQLString},
+    username: { type: GraphQLString },
     read: { type: GraphQLList(GraphQLString) },
     wanted: { type: GraphQLList(GraphQLString) },
     fav: { type: GraphQLList(GraphQLString) },

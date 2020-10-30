@@ -18,6 +18,7 @@ import { USER_URL } from "../index";
  * @var phonePage is a constant that says what page you are on when you are on a phone.
  * @var username is the user's username.
  * @var token is the current users jwt token.
+ * @var isLoggedIn is a boolean showing if a user is logged in or not.
  */
 
 const Profile = () => {
@@ -29,9 +30,7 @@ const Profile = () => {
     },
     context: { uri: USER_URL },
   });
-
   const dispatch = useDispatch();
-
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   const isLoggedIn: boolean = useSelector(
     (state: any) => state.loginStatus.loginStatus
@@ -59,10 +58,6 @@ const Profile = () => {
     }
   }
 
-  const newView = (view: string) => {
-    changeView(view);
-  };
-
   return (
     <>
       {isLoggedIn ? (
@@ -76,25 +71,25 @@ const Profile = () => {
           </button>
           <div id="info-on-top-container">
             <MdAccountCircle size="70px" />
-            <h4>Username: {username}</h4>
+            <h4>Username:</h4>
             <button
               id="favorites"
-              className={showing + " red-button"}
-              onClick={() => newView("favorites")}
+              className={showing + " red-button profile-view-button"}
+              onClick={() => changeView("favorites")}
             >
               Favorites
             </button>
             <button
               id="wish-to-read"
-              className={showing + " red-button"}
-              onClick={() => newView("wish-to-read")}
+              className={showing + " red-button profile-view-button"}
+              onClick={() => changeView("wish-to-read")}
             >
               Wish to read
             </button>
             <button
               id="have-read"
-              className={showing + " red-button"}
-              onClick={() => newView("have-read")}
+              className={showing + " red-button profile-view-button"}
+              onClick={() => changeView("have-read")}
             >
               Have read
             </button>

@@ -5,7 +5,7 @@
   margin: 40px;
 }
 
-#profile-page button:not(:first-child) {
+.profile-view-button {
   padding: 10px;
   margin-bottom: 20px;
 }
