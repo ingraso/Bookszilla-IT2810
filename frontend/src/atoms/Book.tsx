@@ -24,8 +24,8 @@ export const Book = (props: BookProps) => {
   };
 
   const shortenTitle = (title: string) => {
-    if (title.length > 45) {
-      return title.substring(0, 45) + "...";
+    if (title.length > 40) {
+      return title.substring(0, 40) + "...";
     }
     return title;
   };
