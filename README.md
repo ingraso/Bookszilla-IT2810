@@ -69,15 +69,15 @@ This project was initialized using [create-react-app](https://github.com/faceboo
 
 We used Redux for state management. The group considered both Redux and MobX, but chose Redux because it has a bigger online community, great documentation and the members of the group wanted to learn it, as it is widely used professionally. Redux would also be more scalable over time, which we took into consideration. We used Redux for all states that were used and updated from several components that were not close to each other in the hierarchy. We used the Dispatch-hook to change the states. Most of our reducers only return a new state, except for loginStatusReducer, which also updates session storage. This way, when the page refreshes the user will remain logged in.
 
-# Data Storage and Interaction
+## Data Storage and Interaction
 
-## The Database
+### The Database
 
 We’ve chosen to use [MongoDB](https://www.google.com/url?q=https://www.mongodb.com/&sa=D&ust=1604078344038000&usg=AOvVaw1Bh_4e3GGWrmR2aI7OyTac) as our database technology on the provided virtual machine. MongoDB has good documentation, and is popular enough that most problems have been encountered by others before, making it easy to troubleshoot. It also integrates well with GraphQL, which we intended on using. The database has been set up to allow external access (by units within the NTNU network). It consists of an admin database to manage users and the SearchDB database where the project’s data is stored. SearchDB has two collections: books and users. Each user has an id, a username, an encrypted password and three lists (fav, read and wanted) of book ids. Each book has a unique id, a link to the corresponding image hosted on Amazon, a title, an author and a list of genres. This information has been retrieved from the dataset found [here](https://www.google.com/url?q=https://github.com/uchidalab/book-dataset/tree/master/Task2&sa=D&ust=1604078320211000&usg=AOvVaw1F5SkzJxXB2vK6GIYYDFwa). This was the best dataset we could find that contained book genres, but ideally we would have found one with more genres than one per book. Our code is set up to handle more genres per book, if we were to find a better dataset later in development.
 
 The reason we’ve chosen to store the images as urls pointing to an external site, instead of the images themselves (i.e. as base64 encoded bin files or using GridFS), is mainly because we wanted to use GraphQL to retrieve and update the books, as GraphQL would make search and filtering easier. Since GraphQL only sends json, handling image files would have required a more complex solution with other third-party components.
 
-## The Backend Server
+### The Backend Server
 
 The backend server is set up using [Express](https://www.google.com/url?q=https://expressjs.com/&sa=D&ust=1604078373710000&usg=AOvVaw2qik9ZorxTT63vr5BBzVDk) and [Express-GraphQL](https://www.google.com/url?q=https://github.com/graphql/express-graphql&sa=D&ust=1604078420925000&usg=AOvVaw0wFfbi6U98Kst5-rUjwE8Y), to facilitate GraphQL queries and mutations from the frontend client. [CORS](https://www.google.com/url?q=https://www.npmjs.com/package/cors&sa=D&ust=1604078526087000&usg=AOvVaw3KazblBCPlyl5QmdYl38Xm) is used to prevent Same-Origin Policy(SOP) related issues. [Mongoose](https://www.google.com/url?q=https://mongoosejs.com/&sa=D&ust=1604078550785000&usg=AOvVaw3xTAqgs27kYnr13LqxRVh6) is used to create models and schemas that work with MongoDB. All of these third party components are well documented and widely used, with many good tutorials and forum / Stack Overflow posts to help us learn how they work.
 
@@ -91,9 +91,13 @@ UserInfo: a query that finds the username and book lists of a user given a valid
 UpdateLists: a mutation that updates a user’s book lists based on the given jwt token and list parameters.
 
 We use a REST API to handle user authentication, which has two endpoints:
+
 http://localhost:3001/auth/register
+
 and
+
 http://localhost:3001/auth/login
+
 The reason why the REST API is chosen over GraphQL for user authentication is that it is well-known, and easy to implement and use. We prioritized an api that was easy to implement because the user authentication was not a main focus of the project.
 The third party component bcrypt is used to encrypt and decrypt the users' passwords. It is a well-known library for hashing passwords, that we implemented by generating a salt and then hash on separate function calls. To further explore bcrypt, one can go [here](https://www.npmjs.com/package/bcrypt).
 
@@ -117,8 +121,23 @@ The bookContainer test ensures that when a user visits the web page, and the boo
 
 ### Snapshot testing
 
-We have used snapshot tests to check that we do not unintentionally change the component tree. Because we focused on testing the Book component and the login functionality, the snapshot tests also test these components. For Book we have one test that renders the Book component. For login we test both UserHandling and UserForm for both registration and login. We also tested the reducer being used for login, loginStatusReducer. The hooks were mocked, to avoid calling them.
+We decided not to use snapshot tests in this project because the code would often be changed in this time period. Therefore we thought other tests would be more useful, by showing that e.g. user interaction works as expected.
 
 ## Workflow
 
 Issues in GitLab were used to keep track of which tasks were available, ongoing and done. Each branch, commit and merge request refers to an issue by the issue's number. We also implemented the policy that each merge request had to be reviewed by one other group member before merging.
+
+## Sources
+
+- Backend server setup: https://medium.com/better-programming/full-stack-react-graphql-mongodb-apollo-building-an-app-cb1eb647c73a
+- Redux: https://levelup.gitconnected.com/react-redux-hooks-useselector-and-usedispatch-f7d8c7f75cdd
+- User authentication with REST API https://codeburst.io/to-handle-authentication-with-node-js-express-mongo-jwt-7e55f5818181
+- Fetch and REST API https://www.freecodecamp.org/news/rest-api-tutorial-rest-client-rest-service-and-api-calls-explained-with-code-examples/
+- REST OK response https://stackoverflow.com/questions/38235715/fetch-reject-promise-and-catch-the-error-if-status-is-not-ok
+
+## Known bugs
+
+- Adding to the favourite, read and wanted lists worked until one of the last merges. Now there is a bug that the query to get userInfo in BookListButtons.ts sometimes returns undefined. The mutation to update said lists doesn’t change the user at all most of the time, but sometimes it works. This seems related to when the user logs out and in again, but we don’t have time to investigate it further.
+- A user should not be logged out on reload, which is a bug we wanted to solve. We tried to solve this with session storage, but did not have time to make it work as desired.
+- If you press “SIGN IN” you can scroll down and press books, which should not be possible.
+- Now it is possible to go to the next page, even though there are no more books. If we had more time, we would have fixed this, by e.g. adding a check to see if you get data from the database.
