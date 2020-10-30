@@ -13,20 +13,17 @@ import UserHandling from "./UserHandling";
  * @var showing is a state that is used to decide which books are shown of the three categories
  * mentioned above.
  * @var phonePage is a constant that says what page you are on when you are on a phone.
- * @var username is the user's username.
+ * @var isLoggedIn is a boolean showing if a user is logged in or not.
  */
 
 const Profile = () => {
   const [showing, changeView] = useState("favorites");
-
-  const dispatch = useDispatch();
-
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   const isLoggedIn: boolean = useSelector(
     (state: any) => state.loginStatus.loginStatus
   );
 
-  let username: string = "winter**"; // Get username from db?
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -41,24 +38,24 @@ const Profile = () => {
           </button>
           <div id="info-on-top-container">
             <MdAccountCircle size="70px" />
-            <h4>Username: {username}</h4>
+            <h4>Username:</h4>
             <button
               id="favorites"
-              className={showing + " red-button"}
+              className={showing + " red-button profile-view-button"}
               onClick={() => changeView("favorites")}
             >
               Favorites
             </button>
             <button
               id="wish-to-read"
-              className={showing + " red-button"}
+              className={showing + " red-button profile-view-button"}
               onClick={() => changeView("wish-to-read")}
             >
               Wish to read
             </button>
             <button
               id="have-read"
-              className={showing + " red-button"}
+              className={showing + " red-button profile-view-button"}
               onClick={() => changeView("have-read")}
             >
               Have read

@@ -12,6 +12,8 @@ import { GET_BOOKS_BY_SEARCH } from "../assets/bookHandling";
  * @var phonePage is used to decide if the book-container should be shown.
  * @var search is the string used to search for authors or books.
  * @var filters is a list containing the current filers being used.
+ * @var sortBy is a string that decides in what order the books should be shown.
+ * @var data is the books to show that are retrieved from the database.
  */
 
 export const BookContainer = () => {
@@ -55,6 +57,8 @@ export const BookContainer = () => {
             />
           );
         })}
+        <br></br>
+        <br></br>
         <div id="book-pages-buttons">
           {bookPage > 0 ? (
             <button

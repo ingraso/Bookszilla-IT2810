@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFilter, removeFilter } from "../redux/actions";
+import { addFilter, removeFilter, changeBookPage } from "../redux/actions";
 
 interface CheckboxProps {
   text: string;
@@ -14,12 +14,14 @@ interface CheckboxProps {
  * @param id is the id of the checkbox.
  * @var checked is a hook to decide if a checkbox is checked.
  * @var filters is a list containing the current filers being used.
+ * @var bookPage is used to start at page 0 again when we search for something new.
  */
 
 const Checkbox = (props: CheckboxProps) => {
   const [checked, changeChecked] = useState(false);
   const dispatch = useDispatch();
   const filters: any = useSelector((state: any) => state.filter.filters);
+  const bookPage: any = useSelector((state: any) => state.bookPage.bookPage);
 
   const toggleCheck = () => {
     changeChecked(!checked);
@@ -27,6 +29,9 @@ const Checkbox = (props: CheckboxProps) => {
       dispatch(removeFilter(props.text));
     } else {
       dispatch(addFilter(props.text));
+    }
+    if (bookPage > 0) {
+      dispatch(changeBookPage(0));
     }
   };
 

@@ -29,7 +29,8 @@ when a book is selected */
 }
 
 #book-details img {
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
 }
 
 #book-details .title {
@@ -38,8 +39,8 @@ when a book is selected */
 
 #book-details button:not(:first-child) {
   padding: 5px;
-  margin: 5px auto;
-  width: 80%;
+  margin: 5px 0;
+  width: 100%;
 }
 
 /* When the screen-width is small, book-details should not always be shown */
@@ -68,5 +69,9 @@ when a book is selected */
   #book-details img {
     width: 200px;
     margin: auto;
+  }
+
+  #fill-text-book-details {
+    margin: 20px;
   }
 }
