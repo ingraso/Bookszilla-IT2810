@@ -47,10 +47,7 @@ const BookDetails = () => {
 
   if (bookId !== "") {
     return (
-      <div
-        id="book-details"
-        className={phonePage}
-      >
+      <div id="book-details" className={phonePage}>
         <button
           id="close-book-details"
           className="close-button"
@@ -58,9 +55,9 @@ const BookDetails = () => {
         >
           <MdClose size="20px" />
         </button>
-        <img src={cover} alt="SOME book cover" />
+        <img src={cover} alt={"Book cover for" + title} />
         <p className="title">Title: {title}</p>
-        <p className="author">Author: {author}</p>
+        <p className="author">Author: {author ? author : "Unknown"}</p>
         <p className="genre">
           Genres:
           {genres.map((genre) => {

@@ -64,4 +64,9 @@ when a book is selected */
     margin: auto;
     margin-bottom: 10px;
   }
+
+  #book-details img {
+    width: 200px;
+    margin: auto;
+  }
 }

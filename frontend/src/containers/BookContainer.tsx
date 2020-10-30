@@ -64,9 +64,7 @@ export const BookContainer = () => {
               <MdArrowBack size="30px" />
             </button>
           ) : null}
-          <p>
-            <h3>{"Page " + showingBookPage}</h3>
-          </p>
+          <h3>{"Page " + showingBookPage}</h3>
           <button
             className="red-button"
             onClick={() => changeBookPageHandler(true)}
