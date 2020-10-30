@@ -31,12 +31,16 @@ const BookListButtons = () => {
    */
   const addToUserList = (list: string) => {
     getUser({ variables: { token: token } });
+    console.log("Data: ", data);
+    console.log("token: ", token);
+    console.log("bookId: ", bookId);
     if (data) {
+      console.log("test");
       switch (list) {
         case "read":
           updateUser({
             variables: {
-              readList: [data?.userInfo?.read, bookId],
+              readList: [...data?.userInfo?.read, bookId],
               wantedList: data?.userInfo?.wanted,
               favList: data?.userInfo?.fav,
               token: token,
@@ -67,6 +71,8 @@ const BookListButtons = () => {
           break;
       }
     }
+    getUser({ variables: { token: token } });
+    console.log("After mutation: ", data);
   };
 
   return (

@@ -1,5 +1,7 @@
 /**
- * The file to be run on the provided vm, to facilitate reading and writing to the database
+ * The file to be run on the provided vm, to facilitate reading from and writing to the database
+ * Code inspired from:
+ * https://medium.com/better-programming/full-stack-react-graphql-mongodb-apollo-building-an-app-cb1eb647c73a
  */
 
 const Express = require("express");
