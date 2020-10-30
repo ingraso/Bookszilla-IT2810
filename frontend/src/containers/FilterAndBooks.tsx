@@ -13,6 +13,7 @@ import { BOOK_URL } from "../index";
  * @var search is the string used to search for authors or books.
  * @var filters is a list containing the current filers being used.
  * @var sortBy is what the resulting list of books should be sorted by.
+ * @var data is the books to show that are retrieved from the database.
  */
 
 const FilterAndBooks = () => {
