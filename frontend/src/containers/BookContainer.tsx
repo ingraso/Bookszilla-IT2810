@@ -57,8 +57,6 @@ export const BookContainer = () => {
             />
           );
         })}
-        <br></br>
-        <br></br>
         <div id="book-pages-buttons">
           {bookPage > 0 ? (
             <button
