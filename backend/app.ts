@@ -25,8 +25,10 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+const PORT = 3001;
+
 const app = Express();
-app.use(cors(3002));
+app.use(cors(PORT));
 
 //Connects to the database, authenticating with a user that has read and write privileges
 mongoose
@@ -220,6 +222,16 @@ const UserModel: typeof model = mongoose.model<User>("user", UserSchema);
 
 const router = require("express").Router();
 
+const createToken = (user: any) => {
+  return jwt.sign(
+    {
+      username: user.username,
+      id: user._id,
+    },
+    process.env.TOKEN_SECRET
+  );
+};
+
 router.post("/register", async (req: any, res: any) => {
   // Allow only unique usernames
   const isUsernameExist = await UserModel.findOne({
@@ -243,7 +255,8 @@ router.post("/register", async (req: any, res: any) => {
 
   try {
     const savedUser = await user.save();
-    res.json({ error: null, data: { userId: savedUser._id } });
+    const token = createToken(savedUser);
+    res.json({ error: null, data: { userId: savedUser._id, token: token } });
   } catch (err) {
     res.status(400).json({ err });
   }
@@ -263,13 +276,7 @@ router.post("/login", async (req: any, res: any) => {
   }
 
   // Create token
-  const token = jwt.sign(
-    {
-      username: user.username,
-      id: user._id,
-    },
-    process.env.TOKEN_SECRET
-  );
+  const token = createToken(user);
 
   res.header("auth-token", token).json({
     error: null,
@@ -346,7 +353,7 @@ const userSchema = new GraphQLSchema({
             { useFindAndModify: false, new: true }
           );
           if (!updatedUser) {
-            throw new Error("Failed to update wanted list");
+            throw new Error("Failed to update list");
           }
           return updatedUser;
         },
@@ -376,6 +383,6 @@ app.use(
 );
 
 //Listens for API calls
-app.listen(3002, () => {
-  console.log("Server running at 3002");
+app.listen(PORT, () => {
+  console.log("Server running at", PORT);
 });

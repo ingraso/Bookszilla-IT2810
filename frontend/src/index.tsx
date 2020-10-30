@@ -4,20 +4,17 @@ import { Provider } from "react-redux";
 import App from "./App";
 import store from "./redux/store";
 import * as serviceWorker from "./serviceWorker";
-import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink, ApolloLink} from "@apollo/client";
+import {ApolloClient, InMemoryCache, ApolloProvider} from "@apollo/client";
 import InitData from "./assets/initializeData";
-import {RetryLink} from "@apollo/client/link/retry";
 
-const link = new RetryLink().split(
-  (operation) => operation.getContext().version === 1,
-  new HttpLink({ uri: "http://localhost:3002/book"}),
-  new HttpLink({ uri: "http://localhost:3002/user"}),
-);
+const BASE_URL = "http://localhost:3001/";
+export const BOOK_URL = BASE_URL + "book/";
+export const USER_URL = BASE_URL + "user/";
+export const AUTH_URL = BASE_URL + "auth/";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "http://localhost:3002/",
-  link: link,
+  uri: BASE_URL,
 });
 
 //Only true if there is no data in the database, and you wish to initialize the data.

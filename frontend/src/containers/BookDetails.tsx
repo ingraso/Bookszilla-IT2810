@@ -5,24 +5,28 @@ import { useSelector } from "react-redux";
 import "../styles/BookDetails.css";
 import { useQuery } from "@apollo/client";
 import { GET_BOOK_BY_ID } from "../assets/queries";
+import { BOOK_URL } from "../index";
+import BookListButtons from "../atoms/BookListButtons";
 
 /**
  * BookDetail is a component that will show the details of a chosen book.
  * @var bookDetailsClassName is used to choose if details of a book is shown.
  * @var phonePage uses redux store to decide if the component should be shown.
+ * @var bookId is the id of the book currently being displayed.
+ * @var token is the current users jwt token.
  */
 
 const BookDetails = () => {
   const [bookDetailsClassName, setBookDetailsClassName] = useState<string>(
     "closed-book"
   );
-
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
-
   const bookId: any = useSelector((state: any) => state.id.id);
+  const token: string = useSelector((state: any) => state.loginStatus.token);
 
-  const { loading, error, data } = useQuery(GET_BOOK_BY_ID, {
+  const { data } = useQuery(GET_BOOK_BY_ID, {
     variables: { id: bookId },
+    context: { uri: BOOK_URL },
   });
 
   let title: string = "";
@@ -49,9 +53,6 @@ const BookDetails = () => {
     setBookDetailsClassName("opened-book");
   };
 
-  const notImplemented = () => {
-    alert("Not yet implemented :(");
-  };
 
   return (
     <div className={bookDetailsClassName + " " + phonePage} id="book-details">
@@ -72,32 +73,11 @@ const BookDetails = () => {
       </p>
 
       {loginStatus ? (
-        <>
-          <button
-            id="favorite-button"
-            className="red-button"
-            onClick={notImplemented}
-          >
-            Favorite
-          </button>
-          <button
-            id="wish-to-read-button"
-            className="red-button"
-            onClick={notImplemented}
-          >
-            Wish to read
-          </button>
-          <button
-            id="have-read-button"
-            className="red-button"
-            onClick={notImplemented}
-          >
-            Have read
-          </button>
-        </>
+        <BookListButtons />
       ) : null}
     </div>
   );
 };
+
 
 export default BookDetails;
