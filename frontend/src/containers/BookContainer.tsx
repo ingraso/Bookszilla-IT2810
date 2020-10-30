@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 import { changeBookPage } from "../redux/actions";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
 import { GET_BOOKS_BY_SEARCH } from "../assets/queries";
+import {url} from "inspector";
 
 /**
  * BookContainer is a component that displays all books, and lets you move between pages.
@@ -14,14 +15,14 @@ import { GET_BOOKS_BY_SEARCH } from "../assets/queries";
  * @var filters is a list containing the current filers being used.
  */
 
-export const BookContainer = () => {
+export const BookContainer = (props:{bookList: string[]}) => {
   const dispatch = useDispatch();
   const bookPage: any = useSelector((state: any) => state.bookPage.bookPage);
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   const search: string = useSelector((state: any) => state.search.searchString);
   const filters: string[] = useSelector((state: any) => state.filter.filters);
   const sortBy: string = useSelector((state: any) => state.sortBy.sortBy);
-  const { data } = useQuery(GET_BOOKS_BY_SEARCH, {
+  let { data } = useQuery(GET_BOOKS_BY_SEARCH, {
     variables: {
       search: search,
       filters: filters,
@@ -29,7 +30,9 @@ export const BookContainer = () => {
       size: 18,
       sortBy: sortBy,
     },
+    context: {version: 1},
   });
+  console.log("Books by search", data?.booksBySearch?.toArray);
 
   const changeBookPageHandler = (increase: boolean) => {
     if (bookPage > 0 && !increase) {

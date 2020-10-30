@@ -48,9 +48,10 @@ export const GET_BOOK_LIST_BY_IDS = gql`
   }
 `;
 
-export const GET_USERS_BOOK_LISTS = gql`
+export const GET_USER_INFO = gql`
   query UserInfo($token: String) {
     userInfo(token: $token) {
+      username
       read
       wanted
       fav
