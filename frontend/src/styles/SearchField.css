@@ -1,16 +1,16 @@
-/*Styling for the container*/
+/* Styling for the container */
 #search-field-and-sort-container {
   display: flex;
   margin: 10px auto;
   justify-content: center;
 }
 
-/*Styling for the search-field and search-buttons*/
+/* Styling for the search-field and search-buttons */
 #search {
   width: 45%;
 }
 
-/*Styling for seach-field*/
+/* Styling for seach-field */
 #search input[type="text"] {
   width: 85%;
   box-sizing: border-box;
@@ -34,10 +34,10 @@
   border-radius: 0 4px 4px 0;
 }
 
-/*The following code is inspired by: 
-https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar*/
+/* The following code is inspired by: 
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar */
 
-/*Styling for dropdown-menu for sorting*/
+/* Styling for dropdown-menu for sorting */
 .dropdown {
   position: relative;
   display: inline;
@@ -73,10 +73,18 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar*/
   display: block;
 }
 
-/*Styling for when screen-width <= 850px*/
+/* Styling for when screen-width <= 850px */
 @media screen and (max-width: 850px) {
+  #search-field-and-sort-container {
+    display: flex;
+    margin: 10px 0;
+    justify-content: center;
+    min-width: 350px;
+  }
+
   #search {
-    width: 80vw;
+    width: 85vw;
+    min-width: 280px;
   }
 
   .dropdown-content {

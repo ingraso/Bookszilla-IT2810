@@ -11,6 +11,7 @@ import {url} from "inspector";
  * BookContainer is a component that displays all books, and lets you move between pages.
  * @var bookPage is used to know which page of books the user is currently seeing.
  * @var phonePage is used to decide if the book-container should be shown.
+ * @var data is the books to show that are retrieved from the database.
  */
 
 export const BookContainer = (props:{bookData: any, id: string}) => {
@@ -51,9 +52,7 @@ export const BookContainer = (props:{bookData: any, id: string}) => {
               <MdArrowBack size="30px" />
             </button>
           ) : null}
-          <p>
-            <h3>{"Page " + showingBookPage}</h3>
-          </p>
+          <h3>{"Page " + showingBookPage}</h3>
           <button
             className="red-button"
             onClick={() => changeBookPageHandler(true)}
