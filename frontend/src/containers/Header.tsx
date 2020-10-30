@@ -61,30 +61,37 @@ const Header = ({ changePage }: HeaderProps) => {
           </button>
         )}
         {loginStatus ? (
-          <button className="login-buttons" onClick={signOut}>
+          <button
+            id="sign-out-button"
+            className="login-buttons"
+            onClick={signOut}
+          >
             SIGN OUT
           </button>
         ) : (
-          <button className="login-buttons" onClick={toggleLoginForm}>
+          <button
+            id="sign-in-button"
+            className="login-buttons"
+            onClick={toggleLoginForm}
+          >
             SIGN IN
           </button>
         )}
-
-        {displayRegisterForm ? (
-          <div id="popup">
-            <div id="popup-content">
-              <UserForm isLoginForm={false} toggleForm={toggleRegisterForm} />
-            </div>
-          </div>
-        ) : null}
-        {displayLoginForm ? (
-          <div id="popup">
-            <div id="popup-content">
-              <UserForm isLoginForm={true} toggleForm={toggleLoginForm} />
-            </div>
-          </div>
-        ) : null}
       </div>
+      {displayRegisterForm ? (
+        <div id="popup">
+          <div id="popup-content">
+            <UserForm isLoginForm={false} toggleForm={toggleRegisterForm} />
+          </div>
+        </div>
+      ) : null}
+      {displayLoginForm ? (
+        <div id="popup">
+          <div id="popup-content">
+            <UserForm isLoginForm={true} toggleForm={toggleLoginForm} />
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 };

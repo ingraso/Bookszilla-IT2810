@@ -5,7 +5,7 @@ import App from "./App";
 import store from "./redux/store";
 import * as serviceWorker from "./serviceWorker";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import InitData from "./assets/initializeData";
+import InitData from "./api/initializeData";
 
 const BASE_URL = "http://localhost:3001/";
 export const BOOK_URL = BASE_URL + "book/";

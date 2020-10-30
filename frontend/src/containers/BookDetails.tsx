@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeDetailedBook } from "../redux/actions";
 import "../styles/BookDetails.css";
 import { useQuery } from "@apollo/client";
-import { GET_BOOK_BY_ID } from "../assets/queries";
+import { GET_BOOK_BY_ID } from "../api/queries";
 import { BOOK_URL } from "../index";
 import BookListButtons from "../atoms/BookListButtons";
 
@@ -17,12 +17,8 @@ import BookListButtons from "../atoms/BookListButtons";
  */
 
 const BookDetails = () => {
-  const [bookDetailsClassName, setBookDetailsClassName] = useState<string>(
-    "closed-book"
-  );
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   const bookId: any = useSelector((state: any) => state.id.id);
-  const token: string = useSelector((state: any) => state.loginStatus.token);
 
   const { data } = useQuery(GET_BOOK_BY_ID, {
     variables: { id: bookId },
@@ -75,11 +71,9 @@ const BookDetails = () => {
           })}
         </p>
 
-      {loginStatus ? (
-        <BookListButtons />
-      ) : null}
-    </div>
-  );
+        {loginStatus ? <BookListButtons /> : null}
+      </div>
+    );
   } else {
     if (window.screen.width <= 850 && phonePage === "book") {
       return (
@@ -88,10 +82,9 @@ const BookDetails = () => {
         </h3>
       );
     } else {
-      return <></>;
+      return null;
     }
   }
 };
-
 
 export default BookDetails;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { GET_USER_INFO, UPDATE_USERS_BOOK_LISTS } from "../assets/queries";
+import { GET_USER_INFO, UPDATE_USERS_BOOK_LISTS } from "../api/queries";
 import { USER_URL } from "../index";
 import { useSelector } from "react-redux";
 

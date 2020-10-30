@@ -1,7 +1,7 @@
 import { BookContainer } from "./BookContainer";
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { GET_BOOK_LIST_BY_IDS } from "../assets/queries";
+import { GET_BOOK_LIST_BY_IDS } from "../api/queries";
 import { useSelector } from "react-redux";
 import { BOOK_URL } from "../index";
 
