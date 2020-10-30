@@ -27,7 +27,7 @@ export const Book = (props: BookProps) => {
     dispatch(changeDetailedBook(id));
   };
 
-  const shorthenTitle = (title: string) => {
+  const shortenTitle = (title: string) => {
     if (title.length > 45) {
       return title.substring(0, 45) + "...";
     }
@@ -41,7 +41,7 @@ export const Book = (props: BookProps) => {
       onClick={() => handleBookClick(props.id)}
     >
       <img src={props.cover} alt={"Book cover for" + props.title} />
-      <p className="title">{shorthenTitle(props.title)}</p>
+      <p className="title">{shortenTitle(props.title)}</p>
       <p className="author">by {props.author}</p>
     </div>
   );
