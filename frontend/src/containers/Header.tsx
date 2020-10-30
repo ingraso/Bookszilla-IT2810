@@ -40,6 +40,11 @@ const Header = ({ changePage }: HeaderProps) => {
 
   const dispatch = useDispatch();
 
+  const signOut = () => {
+    changePage("main-page");
+    dispatch(changeLoginStatus(false));
+  };
+
   return (
     <header>
       <h1 id="title" onClick={() => changePage("main-page")}>
@@ -56,10 +61,7 @@ const Header = ({ changePage }: HeaderProps) => {
           </button>
         )}
         {loginStatus ? (
-          <button
-            className="login-buttons"
-            onClick={() => dispatch(changeLoginStatus(false))}
-          >
+          <button className="login-buttons" onClick={signOut}>
             SIGN OUT
           </button>
         ) : (
