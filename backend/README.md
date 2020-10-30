@@ -10,15 +10,13 @@ For the documentation of the project, see the readme-file in the main folder.
 - Stopping the database: `sudo service mongod stop`
 
 ## How to run the backend server locally
-
-- Make sure you're connected to the ntnu vpn
-- `cd backend`
-- `npm install` (if you haven't already)
-- `npm start`
-- To test backend queries you can now go to [localhost:3002/book]()
-
-## Implemented Queries and mutations
-
+ - Make sure you're connected to the ntnu vpn
+ - ```cd backend```
+ - ```npm install``` (if you haven't already)
+ - ```npm start```
+ - To test backend queries you can now go to [localhost:3001/book]() and [localhost:3001/user]()
+ 
+ ## Implemented Queries and mutations
 Get all books (parameters can be removed if not needed):
 
 ```

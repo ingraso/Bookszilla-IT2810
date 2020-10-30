@@ -2,6 +2,7 @@ import { CHANGE_LOGIN_STATUS } from "../actions";
 
 const initialState = {
   loginStatus: window.sessionStorage.getItem("loginStatus"),
+  token: window.sessionStorage.getItem("token"),
 };
 
 const loginStatusReducer = (state = initialState, action: any) => {
@@ -10,8 +11,14 @@ const loginStatusReducer = (state = initialState, action: any) => {
       "loginStatus",
       JSON.stringify(action.loginStatus)
     );
+    window.sessionStorage.setItem(
+      "token",
+      JSON.stringify(action.token)
+    );
     return Object.assign({}, state, {
+      ...state,
       loginStatus: action.loginStatus,
+      token: action.token,
     });
   }
   return state;

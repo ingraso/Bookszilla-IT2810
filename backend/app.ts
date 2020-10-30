@@ -25,8 +25,10 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+const PORT = 3001;
+
 const app = Express();
-app.use(cors(3002));
+app.use(cors(PORT));
 
 //Connects to the database, authenticating with a user that has read and write privileges
 mongoose
@@ -97,20 +99,23 @@ const bookSchema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: "Queries",
     fields: {
-      books: {
+      booksByIds: {
         type: GraphQLList(BookType),
         args: {
           page: { type: GraphQLInt },
           size: { type: GraphQLInt },
+          ids: { type: GraphQLList(GraphQLID) },
         },
         resolve: (
           root: typeof Source,
-          args: { page: number; size: number },
+          args: { page: number; size: number; ids: string[] },
           context: typeof Context,
           info: typeof GraphQLResolveInfo
         ) => {
           const { limit, offset } = getPagination(args.page, args.size);
-          return BookModel.find().skip(offset).limit(limit);
+          return BookModel.find({ _id: { $in: args.ids } })
+            .skip(offset)
+            .limit(limit);
         },
       },
       bookById: {
@@ -196,20 +201,44 @@ const bookSchema = new GraphQLSchema({
 });
 
 // Users
+/**
+ * Functionality to register, authenticate, read and update users
+ * @var username: the username of the user
+ * @var password: the user's encrypted password
+ * @var read: the list of books the user has read
+ * @var wanted: the list of books the user wants to read
+ * @var fav: the list of books the user has marked as favourite
+ */
 interface User extends Document {
   username: string;
   password: string;
+  read: string[];
+  wanted: string[];
+  fav: string[];
 }
 
 const UserSchema: typeof Schema = new Schema({
   username: String,
   password: String,
+  read: [String],
+  wanted: [String],
+  fav: [String],
 });
 
 // @ts-ignore
 const UserModel: typeof model = mongoose.model<User>("user", UserSchema);
 
 const router = require("express").Router();
+
+const createToken = (user: any) => {
+  return jwt.sign(
+    {
+      username: user.username,
+      id: user._id,
+    },
+    process.env.TOKEN_SECRET
+  );
+};
 
 router.post("/register", async (req: any, res: any) => {
   // Allow only unique usernames
@@ -227,11 +256,15 @@ router.post("/register", async (req: any, res: any) => {
   const user = new UserModel({
     username: req.body.username,
     password,
+    read: [],
+    wanted: [],
+    fav: [],
   });
 
   try {
     const savedUser = await user.save();
-    res.json({ error: null, data: { userId: savedUser._id } });
+    const token = createToken(savedUser);
+    res.json({ error: null, data: { userId: savedUser._id, token: token } });
   } catch (err) {
     res.status(400).json({ err });
   }
@@ -251,18 +284,90 @@ router.post("/login", async (req: any, res: any) => {
   }
 
   // Create token
-  const token = jwt.sign(
-    {
-      username: user.username,
-      id: user._id,
-    },
-    process.env.TOKEN_SECRET
-  );
+  const token = createToken(user);
 
   res.header("auth-token", token).json({
     error: null,
     data: { token },
   });
+});
+
+//Defines a graphql type for a user
+const UserType = new GraphQLObjectType({
+  name: "user",
+  fields: {
+    id: { type: GraphQLID },
+    username: { type: GraphQLString },
+    read: { type: GraphQLList(GraphQLString) },
+    wanted: { type: GraphQLList(GraphQLString) },
+    fav: { type: GraphQLList(GraphQLString) },
+  },
+});
+
+//Defines a graphql schema for a user, that includes various graphql queries and mutations
+const userSchema = new GraphQLSchema({
+  query: new GraphQLObjectType({
+    name: "Queries",
+    fields: {
+      userInfo: {
+        type: UserType,
+        args: {
+          token: { type: GraphQLString },
+        },
+        resolve: (
+          root: typeof Source,
+          args: { token: string },
+          context: typeof Context,
+          info: typeof GraphQLResolveInfo
+        ) => {
+          const user = jwt.verify(args.token, process.env.TOKEN_SECRET);
+          return UserModel.findById(user.id);
+        },
+      },
+    },
+  }),
+  mutation: new GraphQLObjectType({
+    name: "UpdateLists",
+    fields: {
+      updateLists: {
+        type: UserType,
+        args: {
+          readList: { type: GraphQLList(GraphQLString) },
+          wantedList: { type: GraphQLList(GraphQLString) },
+          favList: { type: GraphQLList(GraphQLString) },
+          token: { type: GraphQLString },
+        },
+        resolve: async function (
+          root: typeof Source,
+          args: {
+            readList: string[];
+            wantedList: string[];
+            favList: string[];
+            token: string;
+          },
+          context: typeof Context,
+          info: typeof GraphQLResolveInfo
+        ) {
+          const user = jwt.verify(args.token, process.env.TOKEN_SECRET);
+          const updatedUser = await UserModel.findByIdAndUpdate(
+            user.id,
+            {
+              $set: {
+                read: args.readList,
+                wanted: args.wantedList,
+                fav: args.favList,
+              },
+            },
+            { useFindAndModify: false, new: true }
+          );
+          if (!updatedUser) {
+            throw new Error("Failed to update list");
+          }
+          return updatedUser;
+        },
+      },
+    },
+  }),
 });
 
 //Starts up the express app with the aforementioned graphql schema
@@ -277,7 +382,15 @@ app.use(
 app.use(Express.json()); // for body parser
 app.use("/auth/", router);
 
+app.use(
+  "/user",
+  graphqlHTTP({
+    schema: userSchema,
+    graphiql: true,
+  })
+);
+
 //Listens for API calls
-app.listen(3002, () => {
-  console.log("Server running at 3002");
+app.listen(PORT, () => {
+  console.log("Server running at", PORT);
 });

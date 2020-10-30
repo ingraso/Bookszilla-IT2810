@@ -12,9 +12,10 @@ export const changeDetailedBook = (id: string) => ({
   id,
 });
 
-export const changeLoginStatus = (loginStatus: boolean) => ({
+export const changeLoginStatus = (loginStatus: boolean, token: string) => ({
   type: CHANGE_LOGIN_STATUS,
   loginStatus,
+  token,
 });
 
 export const changePhonePage = (newPage: string) => ({

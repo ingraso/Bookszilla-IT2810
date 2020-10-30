@@ -4,20 +4,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeDetailedBook } from "../redux/actions";
 import "../styles/BookDetails.css";
 import { useQuery } from "@apollo/client";
-import { GET_BOOK_BY_ID } from "../assets/bookHandling";
+import { GET_BOOK_BY_ID } from "../assets/queries";
+import { BOOK_URL } from "../index";
+import BookListButtons from "../atoms/BookListButtons";
 
 /**
  * BookDetail is a component that will show the details of a chosen book.
  * @var phonePage uses redux store to decide if the component should be shown.
- * @var bookId is the Id of the book that we want to see the details of.
+ * @var bookId is the id of the book currently being displayed.
+ * @var token is the current users jwt token.
  * @var data is a book retrieved from the database.
  */
 
 const BookDetails = () => {
+  const [bookDetailsClassName, setBookDetailsClassName] = useState<string>(
+    "closed-book"
+  );
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   const bookId: any = useSelector((state: any) => state.id.id);
+  const token: string = useSelector((state: any) => state.loginStatus.token);
+
   const { data } = useQuery(GET_BOOK_BY_ID, {
     variables: { id: bookId },
+    context: { uri: BOOK_URL },
   });
 
   const dispatch = useDispatch();
@@ -41,10 +50,6 @@ const BookDetails = () => {
   const loginStatus: boolean = useSelector(
     (state: any) => state.loginStatus.loginStatus
   );
-
-  const notImplemented = () => {
-    alert("Not yet implemented :(");
-  };
 
   if (bookId !== "") {
     return (
@@ -70,33 +75,11 @@ const BookDetails = () => {
           })}
         </p>
 
-        {loginStatus ? (
-          <>
-            <button
-              id="favorite-button"
-              className="red-button"
-              onClick={notImplemented}
-            >
-              Favorite
-            </button>
-            <button
-              id="wish-to-read-button"
-              className="red-button"
-              onClick={notImplemented}
-            >
-              Wish to read
-            </button>
-            <button
-              id="have-read-button"
-              className="red-button"
-              onClick={notImplemented}
-            >
-              Have read
-            </button>
-          </>
-        ) : null}
-      </div>
-    );
+      {loginStatus ? (
+        <BookListButtons />
+      ) : null}
+    </div>
+  );
   } else {
     if (window.screen.width <= 850 && phonePage === "book") {
       return (
@@ -109,5 +92,6 @@ const BookDetails = () => {
     }
   }
 };
+
 
 export default BookDetails;
