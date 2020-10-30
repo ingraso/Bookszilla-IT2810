@@ -11,7 +11,7 @@ import { MdArrowBack, MdArrowForward } from "react-icons/md";
  * @props booksData is the books to render.
  */
 
-export const BookContainer = (props: { bookData: any; id: string; }) => {
+export const BookContainer = (props: { bookData: any; id: string }) => {
   const dispatch = useDispatch();
   const bookPage: any = useSelector((state: any) => state.bookPage.bookPage);
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);

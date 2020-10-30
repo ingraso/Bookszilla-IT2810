@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import UserForm from "../atoms/UserForm";
 
+/**
+ * Display either register or login form on phone view.
+ * @var displayRegisterForm states if the form to be shown is register or login.
+ */
 const UserHandling = () => {
   const [displayRegisterForm, changeDisplayRegisterForm] = useState<boolean>(
     false

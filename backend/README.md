@@ -10,13 +10,15 @@ For the documentation of the project, see the readme-file in the main folder.
 - Stopping the database: `sudo service mongod stop`
 
 ## How to run the backend server locally
- - Make sure you're connected to the ntnu vpn
- - ```cd backend```
- - ```npm install``` (if you haven't already)
- - ```npm start```
- - To test backend queries you can now go to [localhost:3001/book]() and [localhost:3001/user]()
- 
- ## Implemented Queries and mutations
+
+- Make sure you're connected to the ntnu vpn
+- `cd backend`
+- `npm install` (if you haven't already)
+- `npm start`
+- To test backend queries you can now go to [localhost:3001/book]() and [localhost:3001/user]()
+
+## Implemented Queries and mutations
+
 Get all books (parameters can be removed if not needed):
 
 ```
@@ -77,7 +79,7 @@ First you need to open Postman.
 ### Register
 
 1. Choose the method "POST"
-2. Input [http://localhost:3002/auth/register]() as the request URL
+2. Input [http://localhost:3001/auth/register]() as the request URL
 3. Go to "Body", choose "raw", and then "JSON" in the dropdowns
 4. Input your data in JSON format, ex.
 
@@ -93,7 +95,7 @@ First you need to open Postman.
 ### Login
 
 1. Choose the method "POST"
-2. Input [http://localhost:3002/auth/login]() as the request URL
+2. Input [http://localhost:3001/auth/login]() as the request URL
 3. Go to "Body", choose "raw", and then "JSON" in the dropdowns
 4. Input your data in JSON format, ex.
 

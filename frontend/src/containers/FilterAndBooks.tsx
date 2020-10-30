@@ -3,7 +3,7 @@ import FilterMenu from "./FilterMenu";
 import "../styles/FilterAndBooks.css";
 import { BookContainer } from "./BookContainer";
 import { useQuery } from "@apollo/client";
-import { GET_BOOKS_BY_SEARCH } from "../assets/queries";
+import { GET_BOOKS_BY_SEARCH } from "../api/queries";
 import { useSelector } from "react-redux";
 import { BOOK_URL } from "../index";
 
@@ -35,7 +35,10 @@ const FilterAndBooks = () => {
   return (
     <div id="flex-container">
       <FilterMenu />
-      <BookContainer bookData={data?.booksBySearch} id="main-page-book-container" />
+      <BookContainer
+        bookData={data?.booksBySearch}
+        id="main-page-book-container"
+      />
     </div>
   );
 };
