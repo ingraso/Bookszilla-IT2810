@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { MdAccountCircle } from "react-icons/md";
-import { BookContainer } from "./BookContainer";
 import "../styles/Profile.css";
 import { useDispatch, useSelector } from "react-redux";
 import { BsBoxArrowRight } from "react-icons/bs";
 import { changeLoginStatus } from "../redux/actions";
 import UserHandling from "./UserHandling";
+import { useQuery } from "@apollo/client";
+import { GET_USER_INFO } from "../assets/queries";
+import { ProfileLists } from "./ProfileLists";
+import { USER_URL } from "../index";
 
 /**
  * Profile is a component for the applications profile-page. It shows the users username,
@@ -13,17 +16,47 @@ import UserHandling from "./UserHandling";
  * @var showing is a state that is used to decide which books are shown of the three categories
  * mentioned above.
  * @var phonePage is a constant that says what page you are on when you are on a phone.
+ * @var username is the user's username.
+ * @var token is the current users jwt token.
  * @var isLoggedIn is a boolean showing if a user is logged in or not.
  */
 
 const Profile = () => {
   const [showing, changeView] = useState("favorites");
+  const token: string = useSelector((state: any) => state.loginStatus.token);
+  const { data } = useQuery(GET_USER_INFO, {
+    variables: {
+      token: token,
+    },
+    context: { uri: USER_URL },
+  });
+  const dispatch = useDispatch();
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   const isLoggedIn: boolean = useSelector(
     (state: any) => state.loginStatus.loginStatus
   );
 
-  const dispatch = useDispatch();
+  let username: string = "";
+  if (data) {
+    username = data?.userInfo?.username;
+  }
+  let bookList: string[] = [];
+
+  if (data) {
+    switch (showing) {
+      case "favorites":
+        bookList = data?.userInfo?.fav;
+        break;
+      case "wish-to-read":
+        bookList = data?.userInfo?.wanted;
+        break;
+      case "have-read":
+        bookList = data?.userInfo?.read;
+        break;
+      default:
+        bookList = [];
+    }
+  }
 
   return (
     <>
@@ -32,7 +65,7 @@ const Profile = () => {
           <button
             id="profile-sign-out"
             className={phonePage.phonePage}
-            onClick={() => dispatch(changeLoginStatus(false))}
+            onClick={() => dispatch(changeLoginStatus(false, ""))}
           >
             <BsBoxArrowRight size="30px" />
           </button>
@@ -61,7 +94,7 @@ const Profile = () => {
               Have read
             </button>
           </div>
-          <BookContainer />
+          <ProfileLists bookList={bookList} />
         </div>
       ) : (
         <div id="login-page" className={phonePage}>

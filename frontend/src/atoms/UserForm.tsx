@@ -3,13 +3,12 @@ import { MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLoginStatus } from "../redux/actions";
 import "../styles/UserForm.css";
+import { AUTH_URL } from "../index";
 
 interface UserFormProps {
   isLoginForm: boolean;
   toggleForm: () => void;
 }
-
-const API_URL = "http://localhost:3002/auth/";
 
 const UserForm = (props: UserFormProps) => {
   const [username, setUsername] = useState<string>("");
@@ -36,7 +35,7 @@ const UserForm = (props: UserFormProps) => {
   };
 
   const registerUser = () => {
-    fetch(props.isLoginForm ? API_URL + "login" : API_URL + "register", {
+    fetch(props.isLoginForm ? AUTH_URL + "login" : AUTH_URL + "register", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -49,11 +48,13 @@ const UserForm = (props: UserFormProps) => {
     })
       .then((res) => {
         if (res.ok) {
-          dispatch(changeLoginStatus(true));
-          props.toggleForm();
-
           return res.json();
         }
+      })
+      .then((data) => {
+        dispatch(changeLoginStatus(true, data.data.token));
+        props.toggleForm();
+        return data;
       })
       .catch((err) => console.log(err));
   };

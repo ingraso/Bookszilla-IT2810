@@ -7,9 +7,14 @@ import * as serviceWorker from "./serviceWorker";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import InitData from "./assets/initializeData";
 
+const BASE_URL = "http://localhost:3001/";
+export const BOOK_URL = BASE_URL + "book/";
+export const USER_URL = BASE_URL + "user/";
+export const AUTH_URL = BASE_URL + "auth/";
+
 const client = new ApolloClient({
-  uri: "http://localhost:3002/book",
   cache: new InMemoryCache(),
+  uri: BASE_URL,
 });
 
 //Only true if there is no data in the database, and you wish to initialize the data.

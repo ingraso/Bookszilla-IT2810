@@ -10,7 +10,7 @@ type HeaderProps = {
 
 /**
  * Header is a component containing every item in the header. What buttons
- * you see will depend on whethter or not you are logged in.
+ * you see will depend on whether or not you are logged in.
  * @var isLoggedIn keeps track of if the user is logged in or not.
  * @var displayRegisterForm displays the form if the user presses the Register
  *    button, and removes on valid submit or closing the form.
@@ -42,7 +42,7 @@ const Header = ({ changePage }: HeaderProps) => {
 
   const signOut = () => {
     changePage("main-page");
-    dispatch(changeLoginStatus(false));
+    dispatch(changeLoginStatus(false, ""));
   };
 
   return (
