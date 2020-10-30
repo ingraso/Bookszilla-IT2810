@@ -9,6 +9,7 @@ import { BOOK_URL } from "../index";
  * Returns a BookContainer with the books corresponding to the list of ids received
  * @param bookList: an array of bookIds
  * @var bookPage is used to know which page of books the user is currently seeing.
+ * @var data is the books we have stored in our list
  */
 
 export const ProfileLists = (props: { bookList: string[] }) => {
