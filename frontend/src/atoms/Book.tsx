@@ -19,12 +19,8 @@ export const Book = (props: BookProps) => {
   const dispatch = useDispatch();
 
   const handleBookClick = (id: string) => {
-    updateDetailedBook(id);
-    dispatch(changePhonePage("book"));
-  };
-
-  const updateDetailedBook = (id: string) => {
     dispatch(changeDetailedBook(id));
+    dispatch(changePhonePage("book"));
   };
 
   return (
