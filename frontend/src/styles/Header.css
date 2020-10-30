@@ -17,6 +17,10 @@ header {
   padding: 0;
 }
 
+#title:hover {
+  cursor: pointer;
+}
+
 .header-right button {
   padding: 12px;
   font-size: 18px;
