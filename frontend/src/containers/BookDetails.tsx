@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeDetailedBook } from "../redux/actions";
 import "../styles/BookDetails.css";
 import { useQuery } from "@apollo/client";
-import { GET_BOOK_BY_ID } from "../assets/queries";
+import { GET_BOOK_BY_ID } from "../api/queries";
 import { BOOK_URL } from "../index";
 import BookListButtons from "../atoms/BookListButtons";
 

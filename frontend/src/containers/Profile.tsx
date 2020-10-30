@@ -6,7 +6,7 @@ import { BsBoxArrowRight } from "react-icons/bs";
 import { changeLoginStatus } from "../redux/actions";
 import UserHandling from "./UserHandling";
 import { useQuery } from "@apollo/client";
-import { GET_USER_INFO } from "../assets/queries";
+import { GET_USER_INFO } from "../api/queries";
 import { ProfileLists } from "./ProfileLists";
 import { USER_URL } from "../index";
 
