@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { changeDetailedBook, changePhonePage } from "../redux/actions";
 import "../styles/Book.css";
 
-interface BookProps {
+export interface BookProps {
   id: string;
   title: string;
   author: string;
@@ -30,12 +30,13 @@ export const Book = (props: BookProps) => {
   return (
     <div
       id={String(props.id)}
+      data-testid="single-book"
       className="single-book"
       onClick={() => handleBookClick(props.id)}
     >
       <img src={props.cover} alt="`SOME book cover" />
-      <p className="title">{props.title}</p>
-      <p className="author">by {props.author}</p>
+      <p className="title" data-testid="book-title">{props.title}</p>
+      <p className="author" data-testid="book-author">by {props.author}</p>
     </div>
   );
 };

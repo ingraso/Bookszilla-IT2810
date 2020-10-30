@@ -1,60 +1,78 @@
 {
-  "books": [
-    {
-      "id": "1",
-      "title": "The Spice Shelf Girls",
-      "author": "Xu Wang",
-      "genres": ["Drama, Documentary"],
-      "cover": "../../sunset.jpg"
-    },
-    {
-      "id": "2",
-      "title": "The Spice Shelf Girls",
-      "author": "Xu Wang",
-      "genres": ["Drama, Documentary"],
-      "cover": "../../sunset.jpg"
-    },
-    {
-      "id": "3",
-      "title": "The Spice Shelf Girls",
-      "author": "Xu Wang",
-      "genres": ["Drama, Documentary"],
-      "cover": "../../sunset.jpg"
-    },
-    {
-      "id": "4",
-      "title": "The Spice Shelf Girls",
-      "author": "Xu Wang",
-      "genres": ["Drama, Documentary"],
-      "cover": "../../sunset.jpg"
-    },
-    {
-      "id": "5",
-      "title": "The Spice Shelf Girls",
-      "author": "Xu Wang",
-      "genres": ["Drama, Documentary"],
-      "cover": "../../sunset.jpg"
-    },
-    {
-      "id": "6",
-      "title": "The Spice Shelf Girls",
-      "author": "Xu Wang",
-      "genres": ["Drama, Documentary"],
-      "cover": "../../sunset.jpg"
-    },
-    {
-      "id": "7",
-      "title": "The Spice Shelf Girls",
-      "author": "Xu Wang",
-      "genres": ["Drama, Documentary"],
-      "cover": "../../sunset.jpg"
-    },
-    {
-      "id": "8",
-      "title": "The Spice Shelf Girls",
-      "author": "Xu Wang",
-      "genres": ["Drama, Documentary"],
-      "cover": "../../sunset.jpg"
-    }
-  ]
+  "data": {
+    "booksBySearch": [
+      {
+        "id": "1",
+        "title": "The Spice Shelf Girls",
+        "author": "Xu Wang",
+        "genres": [
+          "Drama, Documentary"
+        ],
+        "image": "../../sunset.jpg"
+      },
+      {
+        "id": "2",
+        "title": "The Spice Shelf Girls",
+        "author": "Xu Wang",
+        "genres": [
+          "Drama, Documentary"
+        ],
+        "image": "../../sunset.jpg"
+      },
+      {
+        "id": "3",
+        "title": "The Spice Shelf Girls",
+        "author": "Xu Wang",
+        "genres": [
+          "Drama, Documentary"
+        ],
+        "image": "../../sunset.jpg"
+      },
+      {
+        "id": "4",
+        "title": "The Spice Shelf Girls",
+        "author": "Xu Wang",
+        "genres": [
+          "Drama, Documentary"
+        ],
+        "image": "../../sunset.jpg"
+      },
+      {
+        "id": "5",
+        "title": "The Spice Shelf Girls",
+        "author": "Xu Wang",
+        "genres": [
+          "Drama, Documentary"
+        ],
+        "image": "../../sunset.jpg"
+      },
+      {
+        "id": "6",
+        "title": "The Spice Shelf Girls",
+        "author": "Xu Wang",
+        "genres": [
+          "Drama, Documentary"
+        ],
+        "image": "../../sunset.jpg"
+      },
+      {
+        "id": "7",
+        "title": "The Spice Shelf Girls",
+        "author": "Xu Wang",
+        "genres": [
+          "Drama, Documentary"
+        ],
+        "image": "../../sunset.jpg"
+      },
+      {
+        "id": "8",
+        "title": "The Spice Shelf Girls",
+        "author": "Xu Wang",
+        "genres": [
+          "Drama, Documentary"
+        ],
+        "image": "../../sunset.jpg"
+      }
+    ]
+  }
 }
