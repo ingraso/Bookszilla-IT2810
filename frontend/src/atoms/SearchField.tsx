@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
  * SearchField is a component for the search field itself and the
  * search button.
  * @var searchValue keeps the value to search on, and is updated when the input is changed.
- * @var bookPage is used to start at page 0 again when we search for something new
+ * @var bookPage is used to start at page 0 again when we search for something new.
  */
 
 const SearchField = () => {

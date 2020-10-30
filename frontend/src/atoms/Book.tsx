@@ -13,7 +13,7 @@ interface BookProps {
 /**
  * Book is a representation of a book, with its title,
  * author and cover image.
- * @param props
+ * @param props contains the id, title, author and url for a picture of the cover of the book
  */
 export const Book = (props: BookProps) => {
   const dispatch = useDispatch();
@@ -23,13 +23,6 @@ export const Book = (props: BookProps) => {
     dispatch(changePhonePage("book"));
   };
 
-  const shortenTitle = (title: string) => {
-    if (title.length > 40) {
-      return title.substring(0, 40) + "...";
-    }
-    return title;
-  };
-
   return (
     <div
       id={String(props.id)}
@@ -37,7 +30,7 @@ export const Book = (props: BookProps) => {
       onClick={() => handleBookClick(props.id)}
     >
       <img src={props.cover} alt={"Book cover for" + props.title} />
-      <p className="title">{shortenTitle(props.title)}</p>
+      <p className="title">{props.title}</p>
       <p className="author">by {props.author}</p>
     </div>
   );

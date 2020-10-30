@@ -2,6 +2,7 @@
 #filter-menu {
   width: 20vw;
   min-height: 60vh;
+  min-width: 140px;
   margin-left: 10px;
   overflow-x: hidden;
   padding: 10px;
@@ -19,7 +20,7 @@ label {
   position: relative;
   padding-left: 35px;
   height: 20px;
-  margin: 12px 0;
+  margin: 12px 0 25px 0;
   cursor: pointer;
   font-size: 15px;
   -webkit-user-select: none;

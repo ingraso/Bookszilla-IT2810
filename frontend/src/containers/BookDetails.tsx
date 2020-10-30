@@ -8,22 +8,23 @@ import { GET_BOOK_BY_ID } from "../assets/bookHandling";
 
 /**
  * BookDetail is a component that will show the details of a chosen book.
- * @var bookDetailsClassName is used to choose if details of a book is shown.
  * @var phonePage uses redux store to decide if the component should be shown.
+ * @var bookId is the Id of the book that we want to see the details of.
+ * @var data is a book retrieved from the database.
  */
 
 const BookDetails = () => {
   const phonePage: any = useSelector((state: any) => state.phonePage.phonePage);
   const bookId: any = useSelector((state: any) => state.id.id);
+  const { data } = useQuery(GET_BOOK_BY_ID, {
+    variables: { id: bookId },
+  });
+
   const dispatch = useDispatch();
 
   const changeBookIdToEmptyString = () => {
     dispatch(changeDetailedBook(""));
   };
-
-  const { data } = useQuery(GET_BOOK_BY_ID, {
-    variables: { id: bookId },
-  });
 
   let title: string = "";
   let author: string = "";
@@ -56,12 +57,16 @@ const BookDetails = () => {
           <MdClose size="20px" />
         </button>
         <img src={cover} alt={"Book cover for" + title} />
-        <p className="title">Title: {title}</p>
-        <p className="author">Author: {author ? author : "Unknown"}</p>
+        <p className="title">
+          <b>Title:</b> <i>{title}</i>
+        </p>
+        <p className="author">
+          <b>Author:</b> {author ? author : "Unknown"}
+        </p>
         <p className="genre">
-          Genres:
+          <b>Genres:</b>
           {genres.map((genre) => {
-            return <b key={genre}> {genre}</b>;
+            return <p key={genre}> {genre}</p>;
           })}
         </p>
 
@@ -93,7 +98,15 @@ const BookDetails = () => {
       </div>
     );
   } else {
-    return <div></div>;
+    if (window.screen.width <= 850 && phonePage === "book") {
+      return (
+        <h3 id="fill-text-book-details">
+          To display a book, go to "home" and press on a book
+        </h3>
+      );
+    } else {
+      return <></>;
+    }
   }
 };
 
